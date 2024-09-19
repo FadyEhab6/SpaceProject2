@@ -21,3 +21,5 @@ setInterval(() => {
 setInterval(() => {
     console.log(`Days left: ${--days}`)
 },(3000)); //countdown days left
+
+//this change was meant to be as a test for commit #TEST 3
