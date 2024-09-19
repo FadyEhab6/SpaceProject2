@@ -1,0 +1,61 @@
+{
+    "planets": {
+        "planet1": "Mercury",
+        "planet2": "Venus",
+        "planet3": "Earth",
+        "planet4": "Mars",
+        "planet5": "Jupiter",
+        "planet6": "Saturn",
+        "planet7": "Uranus",
+        "planet8": "Neptune"
+    },
+    "scenarios": {
+        "command": [""],
+        "success" : ["lmao", "xd", "lol"],
+        "failure" : ["rip", "f", "oof"]
+    },
+    "responses":{
+        "command": [""],
+        "success": ["You have successfully landed on the planet"],
+        "failure": ["You have failed to land on the planet"],
+        "successRate" : 80
+    },
+    "tests": { 
+        "test1": {
+            "command": ["Run humidity test on the surface of the planet"],
+            "success": ["Alright... The humidity test has been completed successfully. The humidity level on the surface of the planet is 85%, too high for human survival."],
+            "failure": ["*Sighs* The sensor won't work. It seems like the humidity test has failed."],
+            "successRate" : 80
+        },
+        "test2":{
+            "command": ["Run temperature test on the surface of the planet"],
+            "success": ["You have successfully landed on the planet"],
+            "failure": ["You have failed to land on the planet"],
+            "successRate" : 80
+        },
+        "test3":{
+            "command": [""],
+            "success": ["You have successfully landed on the planet"],
+            "failure": ["You have failed to land on the planet"],
+            "successRate" : 80
+        },
+        "test4":{
+            "command": [""],
+            "success": ["You have successfully landed on the planet"],
+            "failure": ["You have failed to land on the planet"],
+            "successRate" : 80
+        },
+        "test5":{
+            "command": [""],
+            "success": ["You have successfully landed on the planet"],
+            "failure": ["You have failed to land on the planet"],
+            "successRate" : 80
+        },
+        "test6":{
+            "command": [""],
+            "success": ["You have successfully landed on the planet"],
+            "failure": ["You have failed to land on the planet"],
+            "successRate" : 80
+        }
+    }
+}
