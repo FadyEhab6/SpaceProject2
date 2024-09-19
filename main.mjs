@@ -12,7 +12,7 @@ function activateTest(testType){
     console.log(result);
 }
 
-activateTest('test4');
+activateTest('test4'); //nigga
 
 setInterval(() => {
     console.log(`O2% left: ${--o2}`)
