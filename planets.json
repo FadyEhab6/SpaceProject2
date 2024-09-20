@@ -1,0 +1,54 @@
+{ 
+    "planet1":{
+        "name": "Mercury",
+        "attributes":{
+            "planet type": "terrestrial",
+            "temperature": 350,
+            "humidity": 0,
+            "gravity": 0.38,
+            "landable": false
+        }
+    } ,
+    "planet2":{
+        "name": "Mercury",
+        "attributes":{
+                
+            }
+    } ,
+    "planet3":{
+        "name": "Mercury",
+        "attributes":{
+                
+            }
+    } ,
+    "planet4":{
+        "name": "Mercury",
+        "attributes":{
+                
+            }
+    } ,
+    "planet5":{
+        "name": "Mercury",
+        "attributes":{
+                
+            }
+    } ,
+    "planet6":{
+        "name": "Mercury",
+        "attributes":{
+                
+            }
+    } ,
+    "planet7":{
+        "name": "Mercury",
+        "attributes":{
+                
+            }
+    } ,
+    "planet8":{
+        "name": "Mercury",
+        "attributes":{
+                
+            }
+    }
+}
