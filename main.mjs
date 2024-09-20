@@ -6,10 +6,10 @@ let o2 = 100, days = 10, logs = []
 const RandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)]; //generates a random element (index) from an array
 let IsSuccessful = (successChance) => (Math.random() * 100 <= successChance); //returns bool if successfull
 function Log(message){
-    logs.push(message)
+    logs.push(`[${currentPlanet}]: ` + message)
 }
 function ReadLog(){
-    logs.forEach(log => console.log(log + '\n'))
+    logs.forEach(log => console.log(log))
 }
 async function activateTest(testType){
     const didSucceed = IsSuccessful(gameData.tests[testType].successRate)? 'success' : 'failure' //determines if test was successful
