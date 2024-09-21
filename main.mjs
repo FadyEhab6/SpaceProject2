@@ -24,6 +24,12 @@ function SwitchPlanet(planet){ //called from html button
     currentPlanet = planet
 }
 
+chosenPlanets.forEach(planet => {
+    console.log(planet)
+})
+
+
+
 activateTest('test1') // The test is determined from html button, it will be called on currentPlanet
 //activateTest('test4'); 
 

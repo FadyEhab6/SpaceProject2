@@ -1,13 +1,71 @@
 <head>
     <script src="main.mjs" type="module"></script>
+    <link rel="stylesheet" href="styles.css">
+    <audio id="background-sound" loop>
+        <source src="./assets/space-ambience.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-sound');
+            audio.play();
+        });
+    </script>
 </head>
 <body>
-    <h1>Space Project</h1>
-    <p class="AstronautResposne">Welcome to the Space Project!</p>
-    <p class="PlayerResposne">Welcome to the Space Project!</p>
-    <button onclick="activateTest('test1')">Test1</button>
-    <button onclick="test2(test2)">Test2</button>
-    <button onclick="test3(test3)">Test3</button>
-    <button onclick="SwitchPlanet('Planet4')">Test4</button>
+    <div class ="main">
+        <div class="main-left">
+            <div class="planets">
+                <form class="planet-container">
+                    <div class="planet-input">
+                        <!-- class: styling
+                        id: label linking
+                        value: code value
+                        name: input linking together -->
+                        <label for="planet1">Planet 1</label>
+                        <input name = "PInput" value ="UR ANUS" type="radio" class="planet" id="planet1">
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet2">Planet 2</label>
+                        <input name = "PInput" value ="Jupiter" type="radio" class="planet" id="planet2">
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet3">Planet 3</label>
+                        <input name = "PInput" value ="Mars" type="radio" class="planet" id="planet3">
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet4">Planet 4</label>
+                        <input name = "PInput" value ="Venus" type="radio" class="planet" id="planet4">
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet5">Planet 5</label>
+                        <input name = "PInput" value ="Earth" type="radio" class="planet" id="planet5">
+                    </div> 
+                </form>
+            </div>
+            <div class="mainScreen">
+                HI lmao
 
+            </div>
+            <div class="responses-container">
+                <button class="response">Response 1</button>
+                <button class="response">Response 2</button>
+                <button class="response">Response 3</button>
+                <button class="response">Response 4</button>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="sideBar">
+                <h2>Side bar Title</h2>
+                <!-- <img src="path/to/image.jpg" alt="Sclassebar Image" style="wclassth:100%; height:auto;"> -->
+                <div class="grid-container">
+                    <button class="grid-item">Button 1</button>
+                    <button class="grid-item">Button 2</button>
+                    <button class="grid-item">Button 3</button>
+                    <button class="grid-item">Button 4</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </body>

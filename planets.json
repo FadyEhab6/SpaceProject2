@@ -6,47 +6,49 @@
             "temperature": 350,
             "humidity": 0,
             "gravity": 0.38,
-            "landable": false
+            "landable": false,
+            "minSpectralWavelength": 0.4,
+            "maxSpectralWavelength": 2.5
         }
     } ,
     "planet2":{
-        "name": "Mercury",
+        "name": "Venus",
         "attributes":{
                 
             }
     } ,
     "planet3":{
-        "name": "Mercury",
+        "name": "Earth",
         "attributes":{
                 
             }
     } ,
     "planet4":{
-        "name": "Mercury",
+        "name": "Mars",
         "attributes":{
                 
             }
     } ,
     "planet5":{
-        "name": "Mercury",
+        "name": "Jupiter",
         "attributes":{
                 
             }
     } ,
     "planet6":{
-        "name": "Mercury",
+        "name": "Saturn",
         "attributes":{
                 
             }
     } ,
     "planet7":{
-        "name": "Mercury",
+        "name": "Uranus",
         "attributes":{
                 
             }
     } ,
     "planet8":{
-        "name": "Mercury",
+        "name": "Neptune",
         "attributes":{
                 
             }
