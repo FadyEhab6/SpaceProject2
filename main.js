@@ -1,8 +1,9 @@
 import gameData from './jsons/gameData.json' with{type: 'json'}
 import planets from './jsons/planets.json' with{type: 'json'}
-import { currentPlanet, chosenPlanets, o2, days, logs } from './globals.mjs';
+import {chosenPlanets, days, logs } from './globals.js';
 
-
+let currentPlanet 
+let o2 = 100
 export function RandomElement(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
 } //generates a random element (index) from an array
@@ -24,6 +25,7 @@ function activateTest(testType){
 }  
 function SwitchPlanet(planet){ //called from html button
     currentPlanet = planet
+    console.log(currentPlanet)
 }
 
 chosenPlanets.forEach(planet => {
@@ -34,15 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(button);
         button.addEventListener('click', () => activateTest('test' + (index + 1)));
     });
+    document.querySelectorAll('.planet[name="PInput"]').forEach((radio) => {
+        radio.addEventListener('change', () => {
+                console.log("LMAO")
+                SwitchPlanet(radio.value)
+        });
+    });
 });
 
-
-//activateTest('test1') // The test is determined from html button, it will be called on currentPlanet
-//activateTest('test4'); 
-
-// setInterval(() => {
-//     console.log(`O2% left: ${--o2}`)
-// },(2000)); //countdown oxygen
+    let O2 = document.getElementById('o2')
+    setInterval(() => {
+        O2.innerHTML = `Oxygen: ${--o2}%`
+    },(2000)); //countdown oxygen
 
 // setInterval(() => {
 //     console.log(`Days left: ${--days}`)
