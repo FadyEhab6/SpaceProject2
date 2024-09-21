@@ -1,16 +1,6 @@
 <head>
-    <script src="./main.mjs" type="module"></script>
-    <script src="../script.js" type="module"></script>
     <link rel="stylesheet" href="styles.css">
-    <audio id="background-sound" loop>
-        <source src="../assets/space-ambience.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="hoverSound" src="../assets/hover.mp3" type="audio/mpeg"></audio>
-    <audio id="clickSound" src="../assets/click.mp3" type="audio/mpeg"></audio>
-    <script>
-    </script>
-</head>
+</head> 
 <body>
     <div class ="main">
         <div class="main-left">
@@ -48,14 +38,10 @@
                         <div id="ASTROtext">
                             "Astronaut Text Goes Here"
                         </div>
-                        <div id="ASTROpic">
-                            ASTROpic
-                        </div>
+                        <img id="ASTROpic" src="../assets/hector.jpg">
                     </div>
                     <div class="operatorMain">
-                        <div id="OPpic">
-                            OPpic
-                        </div>
+                        <img id="OPpic" src="../assets/gus.png">
                         <div id="OPtext">
                             "Operator Text Goes Here"
                         </div>
@@ -74,7 +60,7 @@
                 <h2>Side bar Title</h2>
                 <!-- <img src="path/to/image.jpg" alt="Sclassebar Image" style="wclassth:100%; height:auto;"> -->
                 <div class="grid-container">
-                    <button class="grid-item" event="">Button 1</button>
+                    <button class="grid-item">Button 1</button>
                     <button class="grid-item">Button 2</button>
                     <button class="grid-item">Button 3</button>
                     <button class="grid-item">Button 4</button>
@@ -82,5 +68,13 @@
             </div>
         </div>
     </div>
-    
+
+    <audio id="background-sound" loop>
+        <source src="../assets/space-ambience.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="../main.js" type="module"></script>
+    <script src="../script.js" type="module"></script> 
+    <audio id="hoverSound" src="../assets/hover.mp3" type="audio/mpeg"></audio>
+    <audio id="clickSound" src="../assets/click.mp3" type="audio/mpeg"></audio>
 </body>

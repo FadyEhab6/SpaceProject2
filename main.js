@@ -1,5 +1,5 @@
-import gameData from './json files/gameData.json' assert{type: 'json'}
-import planets from './json files/planets.json' assert{type: 'json'}
+import gameData from './jsons/gameData.json' with{type: 'json'}
+import planets from './jsons/planets.json' with{type: 'json'}
 import { currentPlanet, chosenPlanets, o2, days, logs } from './globals.mjs';
 
 
@@ -14,11 +14,13 @@ function ReadLog(){
     console.log('PLANET DISCOVERY LOGS: \n')
     logs.forEach(log => console.log(log))
 }
-async function activateTest(testType){
+function activateTest(testType){
+    console.log("BUTTON CLICKED")
     const didSucceed = IsSuccessful(gameData.tests[testType].successRate)? 'success' : 'failure' //determines if test was successful
     const result = RandomElement(gameData.tests[testType][didSucceed]); //gets a random response from the array of results
     Log(result) 
     ReadLog() 
+    document.getElementById('ASTROtext').innerHTML = result //displays result on html
 }  
 function SwitchPlanet(planet){ //called from html button
     currentPlanet = planet
@@ -26,11 +28,16 @@ function SwitchPlanet(planet){ //called from html button
 
 chosenPlanets.forEach(planet => {
     console.log(planet)
-})
+}) 
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.grid-item').forEach((button, index) => {
+        console.log(button);
+        button.addEventListener('click', () => activateTest('test' + (index + 1)));
+    });
+});
 
 
-
-activateTest('test1') // The test is determined from html button, it will be called on currentPlanet
+//activateTest('test1') // The test is determined from html button, it will be called on currentPlanet
 //activateTest('test4'); 
 
 // setInterval(() => {

@@ -1,8 +1,8 @@
 {
     "scenarios": {
         "command": [""],
-        "success" : ["lmao", "xd", "lol"],
-        "failure" : ["rip", "f", "oof"]
+        "success" : ["asdasd", "xd", "lol"],
+        "failure" : ["rasdasdip", "f", "asd"]
     },
     "responses":{
         "command": [""],
