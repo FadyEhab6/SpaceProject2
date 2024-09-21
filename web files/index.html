@@ -1,15 +1,14 @@
 <head>
-    <script src="main.mjs" type="module"></script>
+    <script src="./main.mjs" type="module"></script>
+    <script src="../script.js" type="module"></script>
     <link rel="stylesheet" href="styles.css">
     <audio id="background-sound" loop>
-        <source src="./assets/space-ambience.mp3" type="audio/mpeg">
+        <source src="../assets/space-ambience.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    <audio id="hoverSound" src="../assets/hover.mp3" type="audio/mpeg"></audio>
+    <audio id="clickSound" src="../assets/click.mp3" type="audio/mpeg"></audio>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var audio = document.getElementById('background-sound');
-            audio.play();
-        });
     </script>
 </head>
 <body>
@@ -44,8 +43,24 @@
                 </form>
             </div>
             <div class="mainScreen">
-                HI lmao
-
+                <div class="dialogue">
+                    <div class="astronautMain">
+                        <div id="ASTROtext">
+                            "Astronaut Text Goes Here"
+                        </div>
+                        <div id="ASTROpic">
+                            ASTROpic
+                        </div>
+                    </div>
+                    <div class="operatorMain">
+                        <div id="OPpic">
+                            OPpic
+                        </div>
+                        <div id="OPtext">
+                            "Operator Text Goes Here"
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="responses-container">
                 <button class="response">Response 1</button>
@@ -59,7 +74,7 @@
                 <h2>Side bar Title</h2>
                 <!-- <img src="path/to/image.jpg" alt="Sclassebar Image" style="wclassth:100%; height:auto;"> -->
                 <div class="grid-container">
-                    <button class="grid-item">Button 1</button>
+                    <button class="grid-item" event="">Button 1</button>
                     <button class="grid-item">Button 2</button>
                     <button class="grid-item">Button 3</button>
                     <button class="grid-item">Button 4</button>

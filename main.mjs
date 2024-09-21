@@ -1,5 +1,5 @@
-import gameData from './gameData.json' assert{type: 'json'}
-import planets from './planets.json' assert{type: 'json'}
+import gameData from './json files/gameData.json' assert{type: 'json'}
+import planets from './json files/planets.json' assert{type: 'json'}
 import { currentPlanet, chosenPlanets, o2, days, logs } from './globals.mjs';
 
 
