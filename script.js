@@ -2,19 +2,13 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // document.querySelectorAll('.grid-item').forEach((button, index) => {
-    //     console.log(button);
-    //     button.addEventListener('click', () => activateTest('test' + (index + 1)));
-    // });
-
     var audio = document.getElementById('background-sound');
     audio.play();
     audio.volume = 0.05;
     const hoverSound = document.getElementById('hoverSound');
     const clickSound = document.getElementById('clickSound');
-    const buttons = document.querySelectorAll('.response, .grid-item, .planet-input');
+    const buttons = document.querySelectorAll('.response, .grid-item, .planet-input, #log');
+    
     
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
@@ -28,4 +22,5 @@ document.addEventListener('DOMContentLoaded', function() {
             clickSound.play();
         });
     });
-}); 
+
+

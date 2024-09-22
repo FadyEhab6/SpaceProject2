@@ -1,4 +1,18 @@
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <audio id="background-sound" loop>
+        <source src="../assets/space-ambience.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="../main.js" type="module"></script>
+    <script src="../script.js" type="module"></script> 
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <audio id="hoverSound" src="../assets/hover.mp3" type="audio/mpeg"></audio>
+    <audio id="clickSound" src="../assets/click.mp3" type="audio/mpeg"></audio>
+    <audio id="typingSound" src="../assets/morse.mp3" type="audio/mpeg"></audio>
     <link rel="stylesheet" href="styles.css">
 </head> 
 <body>
@@ -12,29 +26,33 @@
                         value: code value
                         name: input linking together -->
                         <label for="planet1">Planet 1</label>
-                        <input name="PInput" value="UR ANUS" type="radio" class="planet" id="planet1" checked>
+                        <input name="PInput" type="radio" class="planet" id="Planet1" checked>
                     </div> 
                     <div class="planet-input">
                         <label for="planet2">Planet 2</label>
-                        <input name = "PInput" value ="Jupiter" type="radio" class="planet" id="planet2">
+                        <input name = "PInput" type="radio" class="planet" id="Planet2">
                     </div> 
                     <div class="planet-input">
                         <label for="planet3">Planet 3</label>
-                        <input name = "PInput" value ="Mars" type="radio" class="planet" id="planet3">
+                        <input name = "PInput" type="radio" class="planet" id="Planet3">
                     </div> 
                     <div class="planet-input">
                         <label for="planet4">Planet 4</label>
-                        <input name = "PInput" value ="Venus" type="radio" class="planet" id="planet4">
+                        <input name = "PInput" type="radio" class="planet" id="Planet4">
                     </div> 
                     <div class="planet-input">
                         <label for="planet5">Planet 5</label>
-                        <input name = "PInput" value ="Earth" type="radio" class="planet" id="planet5">
+                        <input name = "PInput" type="radio" class="planet" id="Planet5">
                     </div> 
                 </form>
             </div>
-            <div class="mainScreen">
-                <div class="dialogue">
+            <div class="mainScreen" id="mainS">
+                <div class="Logs"></div>
+                <div id="dialogue">
                     <div class="astronautMain">
+                        <button id="log">
+                            LOG
+                        </button>
                         <div id="ASTROtext">
                             "Astronaut Text Goes Here"
                         </div>
@@ -57,10 +75,10 @@
         </div>
         <div class="main-right">
             <div class="sideBar">
-                <h2 id="o2">Side bar Title</h2>
+                <h2 id="o2" style="margin: 0">Side bar Title</h2>
                 <!-- <img src="path/to/image.jpg" alt="Sclassebar Image" style="wclassth:100%; height:auto;"> -->
                 <div class="grid-container">
-                    <button class="grid-item">Button 1</button>
+                    <button class="grid-item" id="log-button">View Logs</button>
                     <button class="grid-item">Button 2</button>
                     <button class="grid-item">Button 3</button>
                     <button class="grid-item">Button 4</button>
@@ -68,13 +86,4 @@
             </div>
         </div>
     </div>
-
-    <audio id="background-sound" loop>
-        <source src="../assets/space-ambience.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <script src="../main.js" type="module"></script>
-    <script src="../script.js" type="module"></script> 
-    <audio id="hoverSound" src="../assets/hover.mp3" type="audio/mpeg"></audio>
-    <audio id="clickSound" src="../assets/click.mp3" type="audio/mpeg"></audio>
 </body>
