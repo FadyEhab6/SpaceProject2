@@ -9,5 +9,6 @@ while (chosenPlanetsU.size < 5) {
 }
 chosenPlanets = Array.from(chosenPlanetsU);
 
-export let days = 10, logs = [];
+
+export let logs = [];
 export { chosenPlanets };

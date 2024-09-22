@@ -9,15 +9,45 @@
         <source src="../assets/space-ambience.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <script src="../main.js" type="module"></script>
-    <script src="../script.js" type="module"></script> 
-    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
     <audio id="hoverSound" src="../assets/hover.mp3" type="audio/mpeg"></audio>
     <audio id="clickSound" src="../assets/click.mp3" type="audio/mpeg"></audio>
     <audio id="typingSound" src="../assets/morse.mp3" type="audio/mpeg"></audio>
+    <audio id="sliderSound" src="../assets/slider.mp3" type="audio/mpeg"></audio>
+    <script src="../main.js" type="module"></script>
+    <script src="../script.js" type="module"></script> 
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script>
+        function closeOverlay() {
+        document.getElementById('overlay').style.display = 'none';
+        console.log('overlay closed');
+        }
+        function updateValue(val) {
+            document.getElementById('sliderValue').textContent = val;
+            sliderSound.currentTime = 0;
+            sliderSound.play();
+        }
+    </script>
     <link rel="stylesheet" href="styles.css">
 </head> 
 <body>
+    <div class="overlay" id="overlay">
+        <div class="modal">
+            <h1 class="modal-title">Welcome, Operator!</h1>
+            <p class="modal-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rutrum maximus risus, quis scelerisque felis consequat non. Duis bibendum vulputate felis, nec maximus massa placerat eu. In tincidunt leo sit amet purus vestibulum, id tincidunt arcu sodales. Morbi vitae dignissim dui. Nulla ac imperdiet elit. Nullam non dolor ipsum. Phasellus quis velit ultricies, faucibus eros nec, sodales lectus. Nam volutpat bibendum tellus sed placerat.
+
+                Integer ultrices eros tortor, et placerat ligula mollis ac. Ut tortor risus, rutrum ut bibendum id, sagittis eu orci. Curabitur porttitor, lectus vel consequat eleifend, nunc enim semper tellus, ac lacinia velit justo et massa. Morbi in dolor vitae est gravida facilisis. Fusce tincidunt dictum erat a tempus. Mauris venenatis, sapien non maximus accumsan, tortor sapien semper dui, eu accumsan ex diam ut massa. Duis sed ex nec ex pretium scelerisque ut porta augue.
+                
+                Donec dapibus at nisl id blandit. Aenean posuere, mauris a malesuada tincidunt, ipsum nunc efficitur tortor, eu ullamcorper eros augue at elit. Etiam nec purus fermentum felis aliquam gravida. Vestibulum placerat efficitur eros quis condimentum. Cras scelerisque consequat eros in accumsan. Integer auctor nibh quis turpis sagittis feugiat. Nunc pellentesque tristique metus blandit pretium. Morbi quis massa non metus eleifend scelerisque. Morbi eleifend velit id sapien interdum sodales. Nunc a lobortis lorem, tincidunt rhoncus lacus. Nam fermentum commodo felis, id finibus mi venenatis id. Nunc venenatis auctor ex, vel eleifend neque. Donec sit amet tellus ligula. Aenean ac lectus id nisi laoreet dictum. Maecenas sit amet neque ornare, facilisis felis non, vestibulum neque. Fusce lobortis imperdiet ante.
+                
+                In hac habitasse platea dictumst. Donec sollicitudin augue vel purus hendrerit maximus. Vivamus in tempor nulla. Cras sit amet cursus elit. Aenean porttitor semper neque, at rutrum nibh imperdiet eget. Curabitur nec nunc eget orci tincidunt pellentesque. Aliquam finibus tellus et eleifend dignissim. Sed sed odio consequat, rutrum libero faucibus, finibus nunc. Ut nec sem a enim luctus semper eget sit amet libero. Phasellus eget elit id urna cursus bibendum. Proin in lectus nulla. Nulla eget risus laoreet, placerat augue nec, semper lorem. Etiam ligula ligula, pellentesque id hendrerit at, congue vitae tortor. Praesent sapien risus, rhoncus vitae augue eu, consequat dapibus augue.
+                
+                Nulla tristique eleifend ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla mollis velit, nec ornare enim elementum eu. Vivamus laoreet nisl eu est viverra elementum. Donec fermentum, elit vitae porttitor dictum, leo sem euismod mauris, ut molestie ante tortor ac nunc. Ut malesuada odio felis, dictum sagittis sem malesuada sed. Donec faucibus dignissim erat sed ultrices. Sed id rhoncus diam, et porta est. Vestibulum lacinia placerat tortor, sit amet tempor sapien semper nec. Nunc felis elit, convallis eget felis quis, venenatis pulvinar turpis.</p>
+            <div class="modal-button-container">
+                <button class="modal-button" id="back">Back</button>
+                <button class="modal-button" id="next" onclick="closeOverlay()">Next</button>
+            </div>
+        </div>
+    </div>
     <div class ="main">
         <div class="main-left">
             <div class="planets">
@@ -68,22 +98,42 @@
                     </div>
                 </div>
             </div>
-            <div class="responses-container">
-                <button class="response">Response 1</button>
-                <button class="response">Response 2</button>
-                <button class="response">Response 3</button>
-                <button class="response">Response 4</button>
+            <div class="bottomScreen" >
+                <div class="testing">
+                    <div class="test1">
+                        <label for="slider">Wavelength: <span id="sliderValue"></span></label>
+                        <input type="range" id="slider" min="5" max="20" value="50" step="5" oninput="updateValue(this.value)">
+                        <div class="test1-buttons">
+                            <button class="back-button">Back</button>
+                            <button class="submit-button">Submit</button>
+                        </div>
+                    </div>
+                    <div class="test2">
+    
+                    </div>
+                    <div class="test3">
+    
+                    </div>
+                    <div class="test4">
+    
+                    </div>
+                </div>
+                <div class="responses-container"  >
+                    <button class="response">Atmospheric Composition Analysis</button>
+                    <button class="response">Surface Temperature Mesurment</button>
+                    <button class="response">Geological Survey</button>
+                    <button class="response">Transit Analysis</button>
+                </div>
             </div>
         </div>
         <div class="main-right">
             <div class="sideBar">
                 <h2 id="days" style="margin: 0">Side bar Title</h2>
-                <!-- <img src="path/to/image.jpg" alt="Sclassebar Image" style="wclassth:100%; height:auto;"> -->
                 <div class="grid-container">
                     <button class="grid-item" id="log-button">View Logs</button>
                     <button class="grid-item">Button 2</button>
-                    <button class="grid-item">Button 3</button>
-                    <button class="grid-item">Button 4</button>
+                    <button class="grid-item">Return Early</button>
+                    <button class="grid-item">Submit Early</button>
                 </div>
             </div>
         </div>

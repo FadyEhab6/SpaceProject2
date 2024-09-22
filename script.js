@@ -1,6 +1,11 @@
 //This script is for the sound effects of the buttons and the background music
 
 
+function closeOverlay() {
+document.getElementById('overlay').style.display = 'none';
+console.log('overlay closed');
+}
+
 
     var audio = document.getElementById('background-sound');
     audio.play();

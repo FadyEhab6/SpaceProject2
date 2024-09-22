@@ -7,45 +7,103 @@
     "responses":{
         "command": [""],
         "success": ["You have successfully landed on the planet"],
-        "failure": ["You have failed to land on the planet"],
-        "successRate" : 80
+        "failure": ["You have failed to land on the planet"]
     },
     "tests": { 
         "test1": {
-            "command": ["Run humidity test on the surface of the planet"],
-            "success": ["Alright... The humidity test has been completed successfully. The humidity level on the surface of the planet is 85%, too high for human survival."],
-            "failure": ["*Sighs* The sensor won't work. It seems like the humidity test has failed."],
-            "successRate" : 80
+            "command": ["Run the Atmospheric composition Analysis. use the designated wavelengths.",
+                        "Proceed with the Atmospheric compostion Analysis, focus on the gas signatures in the expected ranges.",
+                        "Proceed with the atmospheric scan using the spectrometer to identify gas signatures."],
+            "success": ["Alright... The analysis is complete! Readings are all in.", 
+                        "Good news... The scan is successful!", 
+                        "Yes! Nailed it. The readings look perfect.", 
+                        "Alright, Spectrometer's reading looks clean. No worries here!",
+                        "We're all set! Everything checks out just fine.",
+                        "Looks like the readings came through just fine. Everything's as expected.",
+                        "Perfect! We've got exactly what we need from that scan."],
+            "failure": ["*Sighs* That did not work. Didn't get any useful data.",
+                        "Looks like we've got an issue. The analysis didn't go through.",
+                        "Hmm, something's not right. We didn't get the results we were hoping for.",
+                        "That's strange… I didn't get any useful data. Might need another look.",
+                        "Uh-oh. Looks like the spectrometer sensor didn't respond. Might need a quick check.",
+                        "I got some readings, but they seem a little off. Maybe we should try another pass?",
+                        "Weird, the readings didn't come back right. Maybe something's messing with the sensors."]
         },
         "test2":{
-            "command": ["Run temperature test on the surface of the planet"],
-            "success": ["You have successfully landed on the planet"],
-            "failure": ["You have failed to land on the planet"],
-            "successRate" : 80
+            "command-standard": ["Activate the standard probe for a baseline temperature measurement.",
+                                "Use the standard probe to measure the surface temperature."],
+            "command-high": ["Deploy the high-temperature probe for surface temperature measurement.",
+                            "Use the high-temperature probe for surface temperature measurement."],
+            "command-deep": ["Send the deep probe to collect temperature data",
+                            "Lower the deep probe into the surface layers to measure the temperatures."],
+            "success-standard": ["The standard probe worked like a charm. All the data's here.",
+                                "Looks like everything's perfect on this end. The standard probe got us the readings.",
+                                "Nice! We've got solid data from the standard probe.",
+                                "Hmmm... Great choice! The standard probe worked perfectly."],
+            "success-high": ["The High-temp probe nailed it! We've got the data we need.",
+                            "High-temperature probe readings came in clean. Everything checks out.",
+                            "Got exactly what we needed. The high-temp probe worked like a charm.",
+                            "High-temp probe's on fire —well, not literally— but it did a great job!"],
+            "success-deep": ["Deep probe got the job done! All data's looking great.",
+                            "Well, that went deep, and we've got the results. Nice job!",
+                            "Great! Deep probe came through, and we're set with the results.",
+                            "Beautiful! The deep probe went all the way and got us exactly what we needed."],
+            "failure-standard": ["Hmm, something's not right. The standard probe didn't return useful data.",
+                                "Bad news... The standard probe melted. Looks like it couldn't handle the temperature.",
+                                "The standard probe is not cooperating. No useful readings.",
+                                "The standard probe seems to be malfunctioning. We're getting nothing useful."],
+            "failure-high": ["Come on, high-temp probe! We need some results, and you're not delivering.",
+                            "No data from the high-temperature probe. We'll need to troubleshoot that.",
+                            "Using a sledgehammer to crack a nut huh! No readings at all.",
+                            "Something feels off with the high-temp probe. It should be reading, but it's not."],
+            "failure-deep": ["No data from the deep probe. We'll need to troubleshoot that.",
+                            "Something feels off with the deep probe. It should be reading, but it's not.",
+                            "The deep probe seems to be malfunctioning. We're getting no useful data.",
+                            "Deep probe readings didn't make it. We might need to check the connection."]
         },
         "test3":{
-            "command": [""],
-            "success": ["You have successfully landed on the planet"],
-            "failure": ["You have failed to land on the planet"],
-            "successRate" : 80
+            "command-radar": ["Run the radar imaging tool to scan the surface.",
+                            "Initiate a full radar sweep to sacn the data."],
+            "command-spectral": ["Begin the spectral analysis to identify additional data.",
+                                "Run a spectral analysis on the surface to gather compositional data."],
+            "success-radar": ["The radar imaging worked perfectly! We've got clear scans of the surface.",
+                            "Success! We uncovered some intriguing formations thanks to the radar scan.",
+                            "Great news! The radar imaging provided detailed insights into the terrain."],
+            "success-spectral": ["Spectral analysis came through! We've got valuable data here",
+                                "We hit the jackpot! The spectral analysis provided exactly the information we needed.",
+                                "We've got excellent results from the spectral analysis"],
+            "failure-radar": ["Bummer! The radar imaging didn't capture any relevant data. We'll need to reassess.",
+                            "It seems the radar scan didn't pick up anything useful. Let's check the settings.",
+                            "Unfortunately, the radar imaging didn't work as planned. Time to troubleshoot."],
+            "failure-spectral": ["Unfortunately, the spectral analysis produced unreliable results.",
+                                "We encountered issues with the spectral analysis. No useful data came through.",
+                                "Hmm, the spectral analysis didn't yield any clear results. We'll need to refine our approach."]
         },
         "test4":{
-            "command": [""],
-            "success": ["You have successfully landed on the planet"],
-            "failure": ["You have failed to land on the planet"],
-            "successRate" : 80
+            "command": ["Run the transit analysis to gather data on the exoplanet's key characteristics.",
+                        "Proceed with the transit scan, focus on mass, orbital period, and distance data."],
+            "success-1": ["We have successfully determined the mass, though further data is required to complete the analysis.",
+                        "The mass has been identified, but without the remaining data, further conclusions are limited.",
+                        "The mass is confirmed. We'll need additional observations to determine the orbital period and distance."],
+            "success-2": ["We've identified both the mass and its distance from the star. The orbital period remains undetermined.",
+                        "Mass and distance from the star have been confirmed. Additional work is needed to ascertain the orbital period.",
+                        "We've gathered reliable data on both mass and distance. Further analysis is necessary to complete the orbital profile."],
+            "success-all": ["Mass, check. Distance, check. Orbital period, check. Analysis complete!",
+                            "Complete data has been secured: mass, orbital period, and distance. The results are conclusive.",
+                            "We got it all! Mass, orbital period, and distance from the star. Looks like we're done here!"],
+            "failure": ["It's a total blank. We didn't get any data. Something went wrong.",
+                        "None of the data points are there. We'll have to investigate the instruments.",
+                        "The attempt to gather data was unsuccessful. A reassessment is required."]
         },
         "test5":{
             "command": [""],
-            "success": ["You have successfully landed on the planet"],
-            "failure": ["You have failed to land on the planet"],
-            "successRate" : 80
+            "success": [""],
+            "failure": [""]
         },
         "test6":{
             "command": [""],
-            "success": ["You have successfully landed on the planet"],
-            "failure": ["You have failed to land on the planet"],
-            "successRate" : 80
+            "success": [""],
+            "failure": [""]
         }
     }
 }

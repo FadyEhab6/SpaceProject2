@@ -1,10 +1,11 @@
 import gameData from './jsons/gameData.json' with{type: 'json'}
 import planets from './jsons/planets.json' with{type: 'json'}
 
-import {chosenPlanets, days, logs } from './globals.js';
+import {chosenPlanets, logs } from './globals.js';
 
 let currentPlanet;
 let o2 = 100
+let days = 10
 let i = 0;
 let speed = 30;
 let isOpen = false;
@@ -12,6 +13,25 @@ let IsSuccessful = (successChance) => (Math.random() * 100 <= successChance); //
 let isTyping;
 const typingSound = document.getElementById('typingSound');
 console.log(chosenPlanets)
+
+function Outcome(testType) {
+    if(testType === 'test1'){
+    ///////////////////// 1 ////////////////////////
+        return IsSuccessful(80) ? 'success' : 'failure';
+    }
+    ///////////////////// 2 ////////////////////////
+    if(testType === 'test2'){
+        return IsSuccessful(80) ? 'success' : 'failure';
+    }
+    ////////////////////// 3 ///////////////////////
+    if(testType === 'test3'){
+        return IsSuccessful(80) ? 'success' : 'failure';
+    }
+    /////////////////////// 4 //////////////////////
+    if(testType === 'test4'){
+        return IsSuccessful(80) ? 'success' : 'failure';
+    }
+}
 
 export function RandomElement(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
@@ -39,30 +59,47 @@ function ReadLog(){
     }
 }
 
-function activateTest(testType) {
-    console.log("BUTTON CLICKED");
-    const didSucceed = IsSuccessful(gameData.tests[testType].successRate) ? 'success' : 'failure'; // determines if test was successful
-    const result = RandomElement(gameData.tests[testType][didSucceed]); // gets a random response from the array of results
-
-    function typeWriter() {
-        if (i < result.length) {
-            document.getElementById('ASTROtext').innerHTML += result.charAt(i);
-            typingSound.volume = 0.1;
-            typingSound.play();
-            i++;
-            setTimeout(typeWriter, speed);
-        } else {
-            isTyping = false;
-            typingSound.pause();
-            typingSound.currentTime = 0; // Reset audio to the start
+function typeWriter(text, divId) {
+    return new Promise((resolve) => { // Return a promise
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                document.getElementById(divId).innerHTML += text.charAt(i);
+                typingSound.volume = 0.1;
+                typingSound.play();
+                i++;
+                setTimeout(type, speed); // Call recursively until finished
+            } else {
+                typingSound.pause();
+                typingSound.currentTime = 0; // Reset audio to the start
+                resolve(); // Resolve the promise when done typing
+            }
         }
+        type();
+    });
+}
+function delay(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+function activateTest(testType) {
+    console.log("BUTTON CLICKED with test type: " + testType);
+    if(!isTyping){
+        const command = RandomElement(gameData.tests[testType].command); // gets a random command from the array of commands
+        
+        const didSucceed = IsSuccessful(80) ? 'success' : 'failure'; // determines if test was successful
+        console.log(didSucceed);
+        const result = RandomElement(gameData.tests[testType][didSucceed]); // gets a random response from the array of results
+        
+        document.getElementById('OPtext').innerHTML = ' ';
+        document.getElementById('ASTROtext').innerHTML = ' ';
+        isTyping = true;
+
+        // First type the OP text, then type the ASTRO text
+        typeWriter(command, 'OPtext')
+            .then(() => delay(2000)) // adds delay
+            .then(() => typeWriter(result, 'ASTROtext')) // Wait for OPtext to finish
+            .then(() => isTyping = false); // Reset isTyping when both are done
     }
-    
-    i = 0;
-    // typingSound.currentTime = 0; // Reset audio to the start
-    document.getElementById('ASTROtext').innerHTML = ' ';
-    typeWriter();
-    isTyping = true;
 }
 function SwitchPlanet(planet){ //called from html button
     currentPlanet = planet // <-- dy tmam
