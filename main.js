@@ -92,10 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-    let O2 = document.getElementById('o2')
+    let daysVisual = document.getElementById('days')
+        daysVisual.innerHTML = `Days left: ${days}`
     setInterval(() => {
-        O2.innerHTML = `Oxygen: ${--o2}%`
-    },(2000)); //countdown oxygen
+        daysVisual.innerHTML = `Days left: ${--days}`
+    },(60000)); //countdown oxygen
 
 // setInterval(() => {
 //     console.log(`Days left: ${--days}`)
