@@ -13,7 +13,7 @@
             "Surface Condition":"no solid surface",
             "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["No solid surface.", "He can identify some gases but not minerals.", "He can't see below the surface."],
             "Dialogue4": [" The mass is 158.9 earth.", " The distance from its star is 0.05 AU.", " The orbital period is 4.2 days."]
         },
         "test1": false,
@@ -36,7 +36,7 @@
             "Surface Condition":"no solid surface",
             "Gases Present": ["Hydrogen", "Helium", "Metal Atoms"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["No solid surface Detected.", "He can identify some gases but not minerals.", "He can't see below the surface."],
             "Dialogue4": [" The mass is 890.0 earth.", " The distance from its star is 0.03 AU.", " The orbital period is 1.5 days."]
         },
         "test1": false,
@@ -58,7 +58,7 @@
             "Surface Condition":"no solid surface",
             "Gases Present": ["Hydrogen", "Helium", "Water Vapor", "Sodium"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["No solid surface Detected.", "He can identify some gases but not minerals.", "He can't see below the surface."],
             "Dialogue4": [" The mass is 158.9 earth.", " The distance from its star is 0.04 AU.", " The orbital period is 3.4 days."]
         },
         "test1": false,
@@ -80,7 +80,7 @@
             "Surface Condition":"no solid surface.",
             "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["No solid surface Detected.", "He can identify some gases but not minerals.", "He can't see below the surface."],
             "Dialogue4": [" The mass is 158.9 earth.", " The distance from its star is 0.05 AU.", " The orbital period is 4.2 days."]
         },
         "test1": false,
@@ -101,9 +101,10 @@
             "Mass": "8",
             "Surface Condition":"Likely has a solid core made of heavy elements, surrounded by a thick layer of gases",
             "Surface Minerals":["Graphite", "diamond", "silicates"],
+            "Subsurface": "Potential of lava oceans.",
             "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Likely has a solid core made of heavy elements, surrounded by a thick layer of gases", "He can see Graphite, diamond, and silicates.", "Potential of lava oceans Detected."],
             "Dialogue4": [" The mass is 8.0 earth.", " The distance from its star is 0.015 AU.", " The orbital period is 4.2 days."]
             
         },
@@ -128,7 +129,7 @@
             "Subsurface": "Possible water oceans under high pressure.",
             "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Possibly an ocean world with a thick atmosphere.", "He can see hydrates and silicates.", "Possible water oceans under high pressure."],
             "Dialogue4": [" The mass is 6.5 earth.", " The distance from its star is 0.014 AU.", " The orbital period is 1.58 days."]
         },
         "test1": false,
@@ -151,7 +152,7 @@
             "Surface Minerals":["liquid in ice form", "iron"],
             "Gases Present": ["Hydrogen", "Helium", "Methane"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["It likely has a core composed of heavier elements and surrounded by gases.", "He can see liquid in ice form and iron.", "Potential of ice surface Detected."],
             "Dialogue4": [" The mass is 3495.8 earth.", " The distance from its star is 650 AU.", " The orbital period is 3000 days."]
         },
         "test1": false,
@@ -173,7 +174,7 @@
             "Surface Condition":"his surface made of thick layer of ice and liquid water beneath a dense atmosphere",
             "Gases Present": ["Hydrogen", "Sodium" , "Water Vapor"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["His surface made of thick layer of ice and liquid water beneath a dense atmosphere.", "He can identify some gases but not minerals.", "He can't see below the surface."],
             "Dialogue4": [" The mass is 3495.8 earth.", " The distance from its star is 0.053 AU.", " The orbital period is 4.89 days."]
         },
         "test1": false,
@@ -197,7 +198,7 @@
             "Subsurface": "Possible tectonic activity and iron-rich minerals",
             "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Potentially rocky Surface.", "He can see Silicates, carbonates, water, and iron minerals.", "Possible tectonic activity and iron-rich minerals."],
             "Dialogue4": [" The mass is 3495.8 earth.", " The distance from its star is 1.05 AU.", " The orbital period is 385 days."]
         },
         "test1": false,
@@ -221,7 +222,7 @@
             "Subsurface": "rocky mantle with iron core.",
             "Gases Present": ["Hydrogen", "Sodium" , "Water Vapor"] ,
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Likely rocky Surface.", "He can see Silicates, iron oxides, and liquid in ice form.", "Rocky mantle with iron core."],
             "Dialogue4": [" The mass is 6.6 earth.", " The distance from its star is 0.09 AU.", " The orbital period is 24.7 days."]
         },
         "test1": false,
@@ -245,7 +246,7 @@
             "Subsurface": "Expected a lava Ocean ",
             "Gases Present": ["Carbon Dioxide", "Hydrogen", "Water Vapor"],
             "Probe":"High",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Possible volcanic activity.", "He can see Basalt, silicates, and molten lava.", "Potential of lava oceans Detected."],
             "Dialogue4": [" The mass is 4.8 earth.", " The distance from its star is 0.017 AU.", " The orbital period is 0.85 days."]
         },
         "test1": false,
@@ -269,7 +270,7 @@
             "Subsurface": "Rocky with potential for subsurface water or ice.",
             "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Potentially rocky Surface.", "Minerales Found: Silicates, carbonates.", "Rocky with potential for subsurface water or ice."],
             "Dialogue4": [" The mass is 1.5 earth.", " The distance from its star is 0.15 AU.", " The orbital period is 37 days."]
         },
         "test1": false,
@@ -293,7 +294,7 @@
             "Subsurface": "rocky mantle with an iron core",
             "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor", "Carbon Dioxide"],
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Potential for liquid water on Surface depending on atmosphere.", "Minerales Found: Silicates, iron, liquid in ice form.", "Rocky mantle with an iron core."],
             "Dialogue4": [" The mass is 1.3 earth.", " The distance from its star is 0.048 AU.", " The orbital period is 11.2 days."]
         },
         "test1": false,
@@ -317,7 +318,7 @@
             "Subsurface": "rocky with potential for liquid water",
             "Gases Present": ["Water Vapor", "Nitrogen", "Methane"],
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Potentially rocky Surface.", "Minerales Found: Silicates, iron oxides, liquid in ice form.", "Rocky with potential for liquid water."],
             "Dialogue4": [" The mass is 0.388 earth.", " The distance from its star is 0.022 AU.", " The orbital period is 4.05 days."]
         },
         "test1": false,
@@ -341,7 +342,7 @@
             "Subsurface": "tectonic activity",
             "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Possible presence of liquid water on Surface.", "Minerales Found: Silicates, carbonates, liquid in ice form.", "Tectonic activity."],
             "Dialogue4": [" The mass is 1.4 earth.", " The distance from its star is 0.4 AU.", " The orbital period is 129.9 days."]
         },
         "test1": false,
@@ -365,7 +366,7 @@
             "Subsurface": "rocky mantle with a core of heavy metals.",
             "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
             "Probe":"Standard",
-            "Dialogue3": ["Message1", "Message2", "Message3"],
+            "Dialogue3": ["Rocky Surface with potential for liquid water under suitable conditions.", "Minerales Found: Silicates, iron, liquid in ice form.", "Rocky mantle with a core of heavy metals."],
             "Dialogue4": [" The mass is 1.1 earth.", " The distance from its star is 0.163 AU.", " The orbital period is 37.4 days."]
         },
         "test1": false,
