@@ -12,7 +12,7 @@ console.log('overlay closed');
     audio.volume = 0.05;
     const hoverSound = document.getElementById('hoverSound');
     const clickSound = document.getElementById('clickSound');
-    const buttons = document.querySelectorAll('.response, .grid-item, .planet-input, #log, .test1-button, .modal-button');
+    const buttons = document.querySelectorAll('.response, .grid-item, .planet-input, #log, .test1-button, .modal-button, .victory-button,.Planet');
     
     
     buttons.forEach(button => {

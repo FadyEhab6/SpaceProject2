@@ -94,16 +94,6 @@
             "failure": ["It's a total blank. We didn't get any data. Something went wrong.",
                         "None of the data points are there. We'll have to investigate the instruments.",
                         "The attempt to gather data was unsuccessful. A reassessment is required."]
-        },
-        "test5":{
-            "command": [""],
-            "success": [""],
-            "failure": [""]
-        },
-        "test6":{
-            "command": [""],
-            "success": [""],
-            "failure": [""]
         }
     }
 }

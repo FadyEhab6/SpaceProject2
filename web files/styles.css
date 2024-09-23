@@ -1,5 +1,6 @@
 :root{
-    --main-color: rgba(0, 255, 55, 0.767);
+    --main-color: #00ff37c4;
+    --main-color-opaque: #00ff37;
     --main-color-dim: rgba(0, 255, 55, 0.452);
     --main-bg-color: rgb(14, 14, 14);
     --button-hover: rgba(0, 255, 55, 0.212);
@@ -51,6 +52,13 @@ button:hover{
     margin: 10px;
     padding: 10px;
 }
+#days{
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid var(--main-color);
+    margin: 10px;
+}
 .sideBar{
     font-size: 20px;
     display: flex;
@@ -58,6 +66,18 @@ button:hover{
     align-items: center;
     width: 100%; /* Take 20% of the width */
     height: 100vh;
+}
+.planetSubmit{
+    padding: 30px 20px;
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    justify-content: space-evenly;
+    font-size: 30px;
+}
+.open.planetSubmit{
+    display: flex; 
 }
 .grid-container {
     display: grid;
@@ -237,7 +257,7 @@ input[type="radio"]:checked::before {
     display: flex;
 }
 .clicked-log {
-    background-color:var(--main-color);
+    background-color:var(--main-color-opaque);
     color: var(--main-bg-color);
 }
 .clicked-log:hover {
@@ -246,7 +266,7 @@ input[type="radio"]:checked::before {
 
 .overlay{
     display: flex;
-    
+    z-index: 1; 
     position: fixed;
     top: 0;
     bottom: 0;
@@ -360,3 +380,102 @@ input[type="range"]::-ms-thumb {
     font-size: 30px;
 }
 
+/* *************************************************************** */
+/* For WebKit browsers (Chrome, Safari) */
+select {
+    font-family: VT323, monospace;
+    font-size: 20px;
+    text-align: center;
+    background-color: var(--main-bg-color); /* Background color of the dropdown */
+    color: var(--main-color); /* Text color for contrast */
+    padding: 5px;
+    border: 1px solid var(--main-color);
+    border-radius: 0px;
+    cursor: pointer;
+    -webkit-appearance: none; /* Removes default WebKit styling */
+    -moz-appearance: none; /* Firefox support */
+    appearance: none; /* Modern browsers */
+}
+
+/* Styling the dropdown arrow */
+select::-ms-expand {
+    display: none; /* For Internet Explorer */
+}
+
+/* Additional optional styling for hover and focus states */
+select:hover {
+    background-color: var(--button-hover); /* Slightly lighter green on hover */
+}
+
+select:focus {
+    outline: none; /* Add green glow on focus */
+}
+
+
+
+/* Option-specific styling inside the dropdown */
+select option {
+    background-color: var(--main-bg-color); /* White background for options */
+    color: var(--main-color); /* Black text color */
+    padding: 5px; /* Padding for options */
+    border-radius: 0%;
+}
+select option:hover {
+    background-color: transparent; /* No hover effect */
+    color: inherit; /* Keep the same text color */
+}
+/* Change color for selected option */
+select option:checked {
+    background-color: #32CD32; /* Light green for selected option */
+    color: rgb(0, 0, 0); /* White text for contrast */
+}
+/* *************************************************************** */
+
+
+.grid-item.clicked-submit-menu {
+    background-color:var(--main-color-opaque);
+    color: var(--main-bg-color);
+} 
+.grid-item.clicked-submit-menu:hover {
+    background-color: rgba(0, 255, 55, 0.637);
+}
+/* *************************************************************** */
+.victory{
+    width: 750px;
+    height: 650px;
+    border: 3px solid var(--main-color);
+    background-color: var(--main-bg-color);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px 20px;
+}
+.victory-title{
+    font-size: 70px;
+}
+.victory-text{
+    font-size: 40px;
+    text-align: center;
+    color: var(--main-color-dim)
+}
+.victory-button{
+    font-size: 30px;
+    width: 100%;
+    height: 50px;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+    margin-top: auto;
+}
+.victory-button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    margin-top: auto;
+}
+.open.victory{
+    display: flex; 
+}

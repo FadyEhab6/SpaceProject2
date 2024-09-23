@@ -9,6 +9,7 @@ while (chosenPlanetsU.size < 5) {
 }
 chosenPlanets = Array.from(chosenPlanetsU);
 
+export let allPlanets = Object.values(planets).map(planet => planet.name);
 
 export let logs = [];
-export { chosenPlanets };
+export { chosenPlanets};

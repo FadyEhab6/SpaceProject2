@@ -1,19 +1,61 @@
 import gameData from './jsons/gameData.json' with{type: 'json'}
 import planets from './jsons/planets.json' with{type: 'json'}
 
-import {chosenPlanets, logs } from './globals.js';
+import {chosenPlanets, logs, allPlanets } from './globals.js';
 
 let currentPlanet;
 let o2 = 100
 let days = 10
 let i = 0;
 let speed = 30;
-let isOpen = false;
+let isOpenLeft = false;
+let isOpenRight = false;
 let IsSuccessful = (successChance) => (Math.random() * 100 <= successChance); //returns bool if successfull
 let isTyping;
+let score = 0;
 
 const typingSound = document.getElementById('typingSound');
 console.log(chosenPlanets)
+function calcScore(){
+    for(let i = 0; i < 5; i++){
+        if(document.getElementById(`planets${i+1}`).value === chosenPlanets[i].name){
+            console.log('correct +1 score')
+            score++ 
+        } 
+        console.log(document.getElementById(`planets${i+1}`))
+    }
+    console.log(score)
+    if(score > 3){
+        document.getElementById('victory-state').innerHTML = 'VICTORY';
+    }else if(score === 2){ 
+        document.getElementById('victory-state').innerHTML = 'NICE TRY NIGGA';
+    }else if(score < 2){
+        document.getElementById('victory-state').innerHTML = 'DEFEAT';
+    }
+}
+
+function VictoryMenu(){ 
+    calcScore();
+    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('victory').classList.add('open');
+    document.getElementById('score').innerHTML = score;
+}
+
+document.querySelectorAll('.Planet select').forEach(select => {
+    allPlanets.forEach(planet => {
+        const option = document.createElement('option');
+        option.value = planet; // Assuming planet is a string
+        option.textContent = planet; // Use textContent to safely add text
+        select.appendChild(option); // Add the option to the select element
+    });
+    select.addEventListener('change', (e) => {
+        select.value = (e.target.value);
+        select.defaultValue = allPlanets[0];
+        console.log(select.defaultValue);
+    });
+});
+
+
 
 function cluesGenerator(cluesCount) {
     const clues = currentPlanet.clues;
@@ -83,17 +125,28 @@ function Log(){
 function ReadLog(){
     console.log('PLANET DISCOVERY LOGS: \n')
     logs.forEach(log => console.log(log))
-    if(isOpen){ //if dialogue is open, close it and display logs
+    if(isOpenLeft){ //if dialogue is open, close it and display logs
         document.getElementById('mainS').classList.remove('open');
         document.getElementById('log-button').classList.remove('clicked-log');
-        isOpen = !isOpen
     }
-    else if(!isOpen){ //if dialogue is closed, open it and hide logs
+    else if(!isOpenLeft){ //if dialogue is closed, open it and hide logs
         document.getElementById('mainS').classList.add('open');
         document.getElementById('log-button').classList.add('clicked-log');
         document.getElementsByClassName('Logs')[0].innerHTML = "PLANET DISCOVERY LOGS:<br><br><br>" + logs.join('<br><hr>')
-        isOpen = !isOpen
     }
+    isOpenLeft = !isOpenLeft
+}
+function SubmitMenu(){
+    if(isOpenRight){ //if menu is open close it
+        document.getElementById('planetSubmit').classList.remove('open');
+        document.getElementById('submit-menu').classList.remove('clicked-submit-menu');
+    }
+    else if(!isOpenRight){ //if menu is closed open it
+        document.getElementById('planetSubmit').classList.add('open');
+        document.getElementById('submit-menu').classList.add('clicked-submit-menu');
+        // document.getElementsByClassName('Logs')[0].innerHTML = "PLANET DISCOVERY LOGS:<br><br><br>" + logs.join('<br><hr>')
+    }
+    isOpenRight = !isOpenRight
 }
 function hideResponses(){
     document.getElementsByClassName('responses-container')[0].style.display = 'none';
@@ -152,7 +205,6 @@ function activateTest(testType) {
         const command = RandomElement(gameData.tests[testType].command); // gets a random command from the array of commands
         
         const didSucceed = IsSuccessful(80) ? 'success' : 'failure'; // determines if test was successful
-        console.log(didSucceed);
         const result = RandomElement(gameData.tests[testType][didSucceed]); // gets a random response from the array of results
 
         //generateText(testType);
@@ -200,9 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // LOG AND VIEW LOGS BUTTON //
+    document.getElementById('return-button').addEventListener('click', VictoryMenu);
     document.getElementById('log').addEventListener('click', Log);
+    document.getElementById('submit-menu').addEventListener('click', SubmitMenu);
     document.getElementById('log-button').addEventListener('click', ReadLog);
-
     // RESPONSE BUTTONS //
     document.querySelectorAll('.response').forEach((button, index) => {
         button.addEventListener('click', () => activateTest(`test${index + 1}`));

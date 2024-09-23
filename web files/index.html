@@ -19,6 +19,7 @@
     <script>
         function closeOverlay() {
         document.getElementById('overlay').style.display = 'none';
+        document.getElementById('modal').style.display = 'none';
         console.log('overlay closed');
         }
         function updateValue(val) {
@@ -26,12 +27,15 @@
             sliderSound.currentTime = 0;
             sliderSound.play();
         }
+        function refreshPage() {
+            location.reload();
+        }
     </script>
     <link rel="stylesheet" href="styles.css">
 </head> 
 <body>
     <div class="overlay" id="overlay">
-        <div class="modal">
+        <div class="modal" id="modal">
             <h1 class="modal-title">Welcome, Operator!</h1>
             <p class="modal-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rutrum maximus risus, quis scelerisque felis consequat non. Duis bibendum vulputate felis, nec maximus massa placerat eu. In tincidunt leo sit amet purus vestibulum, id tincidunt arcu sodales. Morbi vitae dignissim dui. Nulla ac imperdiet elit. Nullam non dolor ipsum. Phasellus quis velit ultricies, faucibus eros nec, sodales lectus. Nam volutpat bibendum tellus sed placerat.
 
@@ -45,6 +49,15 @@
             <div class="modal-button-container">
                 <button class="modal-button" id="next" onclick="closeOverlay()">Awesome!</button>
             </div>
+        </div>
+        <div class="victory" id="victory">
+                <h1 class="victory-title"><span id="victory-state"></span>!</h1>
+                <p class="victory-text">
+                    You got <span id="score">0</span>/5 planets correct!
+                </p>
+                <div class="victory-button-container">
+                    <button class="victory-button" id="next" onclick="refreshPage()">Awesome!</button>
+                </div>
         </div>
     </div>
     <div class ="main">
@@ -127,12 +140,29 @@
         </div>
         <div class="main-right">
             <div class="sideBar">
-                <h2 id="days" style="margin: 0">Side bar Title</h2>
+                <p id="days">Side bar Title</p>
+                <div class="planetSubmit" id="planetSubmit">Submit the planet names:
+                    <div class="Planet Planet1">Planet1:
+                        <select name="planets1" id="planets1"></select>                             
+                    </div>
+                    <div class="Planet Planet2">Planet2:
+                        <select name="planets2" id="planets2"></select>          fy <options> added mn el js</options>                   
+                    </div>
+                    <div class="Planet Planet3">Planet3:
+                        <select name="planets3" id="planets3"></select>                             
+                    </div>
+                    <div class="Planet Planet4">Planet4:
+                        <select name="planets4" id="planets4"></select>                             
+                    </div>
+                    <div class="Planet Planet5">Planet5:
+                        <select name="planets5" id="planets5"></select>                             
+                    </div>
+                </div>
                 <div class="grid-container">
                     <button class="grid-item" id="log-button">View Logs</button>
-                    <button class="grid-item">Button 2</button>
-                    <button class="grid-item">Return Early</button>
-                    <button class="grid-item">Submit Early</button>
+                    <button class="grid-item" id="submit-menu">Submit Menu</button>
+                    <button class="grid-item">Toggle Radio</button>
+                    <button class="grid-item" id="return-button">Return Early</button>
                 </div>
             </div>
         </div>
