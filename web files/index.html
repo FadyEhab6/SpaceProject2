@@ -52,9 +52,10 @@
         </div>
         <div class="victory" id="victory">
                 <h1 class="victory-title"><span id="victory-state"></span>!</h1>
-                <p class="victory-text">
+                <p class="victory-text" style="margin: 10px 0px;">
                     You got <span id="score">0</span>/5 planets correct!
                 </p>
+                <p id="victory-stat">
                 <div class="victory-button-container">
                     <button class="victory-button" id="next" onclick="refreshPage()">Awesome!</button>
                 </div>
@@ -100,10 +101,10 @@
                         <div id="ASTROtext">
                             "Astronaut Text Goes Here"
                         </div>
-                        <img id="ASTROpic" src="../assets/hector.jpg">
+                        <img id="ASTROpic" src="../assets/ASTRO.png">
                     </div>
                     <div class="operatorMain">
-                        <img id="OPpic" src="../assets/gus.png">
+                        <img id="OPpic" src="../assets/OP.png">
                         <div id="OPtext">
                             "Operator Text Goes Here"
                         </div>
@@ -140,13 +141,16 @@
         </div>
         <div class="main-right">
             <div class="sideBar">
-                <p id="days">Side bar Title</p>
+                <div class="topBar">
+                    <p id="days">Days left: 10</p>
+                    <p id="days">Energy: 100%</p>
+                </div>
                 <div class="planetSubmit" id="planetSubmit">Submit the planet names:
                     <div class="Planet Planet1">Planet1:
                         <select name="planets1" id="planets1"></select>                             
                     </div>
                     <div class="Planet Planet2">Planet2:
-                        <select name="planets2" id="planets2"></select>          fy <options> added mn el js</options>                   
+                        <select name="planets2" id="planets2"></select>                       
                     </div>
                     <div class="Planet Planet3">Planet3:
                         <select name="planets3" id="planets3"></select>                             

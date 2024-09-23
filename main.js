@@ -13,6 +13,7 @@ let isOpenRight = false;
 let IsSuccessful = (successChance) => (Math.random() * 100 <= successChance); //returns bool if successfull
 let isTyping;
 let score = 0;
+let correctSubmission = []
 
 const typingSound = document.getElementById('typingSound');
 console.log(chosenPlanets)
@@ -20,6 +21,7 @@ function calcScore(){
     for(let i = 0; i < 5; i++){
         if(document.getElementById(`planets${i+1}`).value === chosenPlanets[i].name){
             console.log('correct +1 score')
+            correctSubmission[i] = true;
             score++ 
         } 
         console.log(document.getElementById(`planets${i+1}`))
@@ -28,7 +30,7 @@ function calcScore(){
     if(score > 3){
         document.getElementById('victory-state').innerHTML = 'VICTORY';
     }else if(score === 2){ 
-        document.getElementById('victory-state').innerHTML = 'NICE TRY NIGGA';
+        document.getElementById('victory-state').innerHTML = 'BETTER LUCK NEXT TIME';
     }else if(score < 2){
         document.getElementById('victory-state').innerHTML = 'DEFEAT';
     }
@@ -39,6 +41,15 @@ function VictoryMenu(){
     document.getElementById('overlay').style.display = 'flex';
     document.getElementById('victory').classList.add('open');
     document.getElementById('score').innerHTML = score;
+    const victoryStat = document.getElementById('victory-stat');
+    chosenPlanets.forEach((planet, i) => {
+        const planetElement = document.createElement('div');
+        planetElement.innerHTML = `Planet${i + 1}: ${planet.name}`;
+        if (!correctSubmission[i]) {
+            planetElement.style.color = '#c40d0d';
+        }
+        victoryStat.appendChild(planetElement);
+    });
 }
 
 document.querySelectorAll('.Planet select').forEach(select => {
@@ -274,10 +285,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
     let daysVisual = document.getElementById('days')
-        daysVisual.innerHTML = `Days left: ${days}`
-    setInterval(() => {
-        daysVisual.innerHTML = `Days left: ${--days}`
-    },(60000)); //countdown oxygen
+    const intervalId = setInterval(() => {
+        if (days === 0) {
+            VictoryMenu();
+            clearInterval(intervalId);
+        } else {
+            daysVisual.innerHTML = `Days left: ${--days}`;
+        }
+    }, 60000); //countdown oxygen
 
 // setInterval(() => {
 //     console.log(`Days left: ${--days}`)
