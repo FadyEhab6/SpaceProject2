@@ -12,7 +12,7 @@ console.log('overlay closed');
     audio.volume = 0.05;
     const hoverSound = document.getElementById('hoverSound');
     const clickSound = document.getElementById('clickSound');
-    const buttons = document.querySelectorAll('.response, .grid-item, .planet-input, #log');
+    const buttons = document.querySelectorAll('.response, .grid-item, .planet-input, #log, .test1-button, .modal-button');
     
     
     buttons.forEach(button => {
@@ -23,7 +23,7 @@ console.log('overlay closed');
         });
         button.addEventListener('click', () => {
             clickSound.currentTime = 0; // Rewind to the start
-            clickSound.volume = 0.1;
+            clickSound.volume = 0.5;
             clickSound.play();
         });
     });

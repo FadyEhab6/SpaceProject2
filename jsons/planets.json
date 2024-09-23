@@ -1,56 +1,264 @@
 { 
     "planet1":{
-        "name": "Mercury",
+        "name": "51 Pegasi b",
         "attributes":{
-            "planet type": "terrestrial",
-            "temperature": 350,
-            "humidity": 0,
-            "gravity": 0.38,
+            "planet_type": "Gas Giant",
+            "temperature": [1200,1300,1400,1500],
             "landable": false,
-            "minSpectralWavelength": 0.4,
-            "maxSpectralWavelength": 2.5
+            "wave_length": "20",
+            "Orbital_Period" : "4.2",
+            "Distance from Star": "0.05",
+            "Mass": "158.9",
+            "Surface Condition":"no solid surface.",
+            "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
+            "Probe":"High -Temperature Probe"
         }
     } ,
+
     "planet2":{
-        "name": "Venus",
+        "name": "KELT-9 b",
         "attributes":{
-                
-            }
+            "planet_type": "Gas Giant",
+            "temperature": [4300,4400,4500,4600],
+            "landable": false,
+            "wave_length": "5",
+            "Orbital_Period" : "1.5",
+            "Distance from Star": "0.03",
+            "Mass": "890.0",
+            "Surface Condition":"temperatures can reach over 4000Â°C.",
+            "Gases Present": ["Hydrogen", "Helium", "Metal Atoms"],
+            "Probe":"High -Temperature Probe"
+        }
     } ,
     "planet3":{
-        "name": "Earth",
+        "name": "WASP-96 b",
         "attributes":{
-                
-            }
+            "planet_type": "Gas Giant",
+            "temperature": [1200,1300,1400,1500],
+            "landable": false,
+            "wave_length": "15",
+            "Orbital_Period" : "3.4",
+            "Distance from Star": "0.04",
+            "Mass": "158.9",
+            "Surface Condition":"known for atmospheric studies.",
+            "Gases Present": ["Hydrogen", "Helium", "Water Vapor", "Sodium"],
+            "Probe":"High -Temperature Probe"
+        }
     } ,
     "planet4":{
-        "name": "Mars",
+        "name": "PH1 b",
         "attributes":{
-                
-            }
+            "planet_type": "Gas Giant",
+            "temperature": [-100, 0, 100, 200, 300, 400, 500, 600, 700],
+            "landable": false,
+            "wave_length": "20",
+            "Orbital_Period" : "4.2",
+            "Distance from Star": "0.05",
+            "Mass": "158.9",
+            "Surface Condition":"no solid surface.",
+            "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
+            "Probe":"High -Temperature Probe"
+        }
     } ,
     "planet5":{
-        "name": "Jupiter",
+        "name": "55 Cancri e",
         "attributes":{
-                
-            }
+            "planet_type": "Neptunian Planet",
+            "temperature": [1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400],
+            "landable": false,
+            "wave_length": "20",
+            "Orbital_Period" : "4.2",
+            "Distance from Star": "0.015",
+            "Mass": "8",
+            "Surface Condition":"no solid surface.",
+            "Surface Minerals":" Graphite, diamond, silicates.",
+            "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
+            "Probe":"High -Temperature Probe"
+        }
     } ,
     "planet6":{
-        "name": "Saturn",
+        "name": "GJ 1214 b",
         "attributes":{
-                
-            }
+            "planet_type": "Neptunian Planet",
+            "temperature": [120,200,300],
+            "landable": false,
+            "wave_length": "20",
+            "Orbital_Period" : "1.58",
+            "Distance from Star": "0.014",
+            "Mass": "6.5",
+            "Surface Condition":"Possibly an ocean world with a thick atmosphere.",
+            "Surface Minerals":"hydrates, and silicates.",
+            "Subsurface": "Possible water oceans under high pressure.",
+            "Gases Present": ["Hydrogen", "Helium", "Water Vapor"],
+            "Probe":"Standard Probe"
+        }
     } ,
     "planet7":{
-        "name": "Uranus",
+        "name": "HD 106906 b",
         "attributes":{
-                
-            }
+            "planet_type": "Neptunian Planet",
+            "temperature": [-50, 0, 50, 100, 150, 200],
+            "landable": false,
+            "wave_length": "15",
+            "Orbital_Period" : "3000",
+            "Distance from Star": "650",
+            "Mass": "3495.8",
+            "Surface Condition":"Only gases.",
+            "Gases Present": ["Hydrogen", "Helium", "Methane"],
+            "Probe":"High"
+        }
     } ,
     "planet8":{
-        "name": "Neptune",
+        "name": "HAT-P-11 b",
         "attributes":{
-                
-            }
-    }
+            "planet_type": "Neptunian Planet",
+            "temperature": [-110, 0, 100, 200, 300, 400, 500, 600],
+            "landable": false,
+            "wave_length": "10",
+            "Orbital_Period" : "4.89",
+            "Distance from Star": "0.053",
+            "Mass": "3495.8",
+            "Surface Condition":"gaseous.",
+            "Surface Minerals":"mix of water vapor and other volatiles, with an ice-rich surface. ",
+            "Subsurface": "Silicates, water ice.",
+            "Gases Present": ["Hydrogen", "Sodium" , "Water Vapor"],
+            "Probe":"High"
+        }
+    } ,
+    "planet9":{
+        "name": "Kepler-452 b",
+        "attributes":{
+            "planet_type": "Super Earth",
+            "temperature": [-30, -20, -10, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
+            "landable": true,
+            "wave_length": "20",
+            "Orbital_Period" : "385",
+            "Distance from Star": "1.05 ",
+            "Mass": "3495.8",
+            "Surface Condition":"Potentially rocky.",
+            "Surface Minerals":"Silicates, carbonates, possibly water, and iron-rich minerals. ",
+            "Subsurface": "Possible tectonic activity",
+            "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
+            "Probe":"Standard"
+        }
+    } ,
+    "planet10":{
+        "name": "LHS 1140 b",
+        "attributes":{
+            "planet_type": "Super Earth",
+            "temperature": [-70, -60, -50, -40, 0, 10, 20, 30],
+            "landable": true,
+            "wave_length": "20",
+            "Orbital_Period" : "24.7 ",
+            "Distance from Star": "0.09",
+            "Mass": "6.6",
+            "Surface Condition":"possibly habitable.",
+            "Surface Minerals":"Silicates, iron oxides, and potentially water ice or liquid water. ",
+            "Subsurface": "rocky mantle with iron core.",
+            "Gases Present": ["Hydrogen", "Sodium" , "Water Vapor"] ,
+            "Probe":"Standard"
+        }
+    } ,
+    "planet11":{
+        "name": "CoRoT-7 b",
+        "attributes":{
+            "planet_type": "Super Eartht",
+            "temperature": [1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300],
+            "landable": false,
+            "wave_length": "10",
+            "Orbital_Period" : "0.85 ",
+            "Distance from Star": "0.017",
+            "Mass": "4.8",
+            "Surface Condition":"possible volcanic activity.",
+            "Surface Minerals":"Basalt, silicates, and possibly molten lava.",
+            "Subsurface": "molten mantle, silicates and heavy metals",
+            "Gases Present": ["Carbon Dioxide", "Hydrogen", "Water Vapor"],
+            "Probe":"High"
+        }
+    } ,
+    "planet12":{
+        "name": "Gliese 581g",
+        "attributes":{
+            "planet_type": "Super Earth",
+            "temperature": [-37, -27, -17, -7, 3, 13, 20],
+            "landable": true,
+            "wave_length": "20",
+            "Orbital_Period" : "37",
+            "Distance from Star": "0.15",
+            "Mass": "1.5",
+            "Surface Condition":"Potentially rocky.",
+            "Surface Minerals":"Silicates, carbonates, and possibly water ice. ",
+            "Subsurface": "Rocky with potential for subsurface water or ice.",
+            "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
+            "Probe":"Standard"
+        }
+    } ,
+    "planet13":{
+        "name": "Proxima Centauri b",
+        "attributes":{
+            "planet_type": "Terrestrial Planet",
+            "temperature": [-40, -30, -20, -10, 0, 10, 20, 30],
+            "landable": true,
+            "wave_length": "10",
+            "Orbital_Period" : "11.2",
+            "Distance from Star": "0.048",
+            "Mass": "1.3",
+            "Surface Condition":"potential for liquid water depending on atmosphere.",
+            "Surface Minerals":"Silicates, iron, and potentially water ice or liquid water. ",
+            "Subsurface": "rocky mantle with an iron core",
+            "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor", "Carbon Dioxide"],
+            "Probe":"Standard"
+        }
+    } ,
+    "planet14":{
+        "name": "TRAPPIST-1dg",
+        "attributes":{
+            "planet_type": "Super Earth",
+            "temperature": [-65, -55, -45, -35, -25, -15, -5, 5],
+            "landable": true,
+            "wave_length": "20",
+            "Orbital_Period" : "4.05",
+            "Distance from Star": "0.022",
+            "Mass": "0.388",
+            "Surface Condition":"Potentially rocky.",
+            "Surface Minerals":"Silicates, iron oxides, and possibly water ice. ",
+            "Subsurface": "rocky with potential for liquid water",
+            "Gases Present": ["Water Vapor", "Nitrogen", "Methane"],
+            "Probe":"Standard"
+        }
+    } ,
+    "planet15":{
+        "name": "Kepler-186f",
+        "attributes":{
+            "planet_type": "Terrestrial Planet",
+            "temperature": [-40, -30, -20, -10, 0, 10],
+            "landable": true,
+            "wave_length": "20",
+            "Orbital_Period" : "129.9",
+            "Distance from Star": "0.4",
+            "Mass": "1.4",
+            "Surface Condition":"possible presence of liquid water.",
+            "Surface Minerals":"Silicates, carbonates, and possibly water ice or liquid water. ",
+            "Subsurface": "tectonic activity",
+            "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
+            "Probe":"Standard"
+        }
+    } ,
+    "planet16":{
+        "name": "TOI 700 d",
+        "attributes":{
+            "planet_type": "Terrestrial Planet",
+            "temperature": [-80, -70, -60, -50, -40, -30, -20, -10, 0, 10],
+            "landable": true,
+            "wave_length": "20",
+            "Orbital_Period" : "37.4",
+            "Distance from Star": "0.163",
+            "Mass": "1.1",
+            "Surface Condition":"rocky; potential for liquid water under suitable conditions.",
+            "Surface Minerals":"Silicates, iron, and potentially water in liquid or ice form.",
+            "Subsurface": "rocky mantle with a core of heavy metals.",
+            "Gases Present": ["Nitrogen", "Oxygen", "Water Vapor"],
+            "Probe":"Standard"
+        }
+    } 
 }

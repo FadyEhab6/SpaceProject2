@@ -43,8 +43,7 @@
                 
                 Nulla tristique eleifend ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla mollis velit, nec ornare enim elementum eu. Vivamus laoreet nisl eu est viverra elementum. Donec fermentum, elit vitae porttitor dictum, leo sem euismod mauris, ut molestie ante tortor ac nunc. Ut malesuada odio felis, dictum sagittis sem malesuada sed. Donec faucibus dignissim erat sed ultrices. Sed id rhoncus diam, et porta est. Vestibulum lacinia placerat tortor, sit amet tempor sapien semper nec. Nunc felis elit, convallis eget felis quis, venenatis pulvinar turpis.</p>
             <div class="modal-button-container">
-                <button class="modal-button" id="back">Back</button>
-                <button class="modal-button" id="next" onclick="closeOverlay()">Next</button>
+                <button class="modal-button" id="next" onclick="closeOverlay()">Awesome!</button>
             </div>
         </div>
     </div>
@@ -100,25 +99,25 @@
             </div>
             <div class="bottomScreen" >
                 <div class="testing">
-                    <div class="test1">
-                        <label for="slider">Wavelength: <span id="sliderValue"></span></label>
-                        <input type="range" id="slider" min="5" max="20" value="50" step="5" oninput="updateValue(this.value)">
+                    <div id="test1"> 
+                        <label for="slider">Wavelength: <span id="sliderValue">10</span></label>
+                        <input type="range" id="slider" min="5" max="20" value="10" step="5" oninput="updateValue(this.value)">
                         <div class="test1-buttons">
-                            <button class="back-button">Back</button>
-                            <button class="submit-button">Submit</button>
+                            <button id="back-button" class="test1-button">Back</button>
+                            <button id="submit-button" class="test1-button">Submit</button>
                         </div>
                     </div>
-                    <div class="test2">
+                    <div id="test2">
+                    
+                    </div>
+                    <div id="test3">
     
                     </div>
-                    <div class="test3">
-    
-                    </div>
-                    <div class="test4">
+                    <div id="test4">
     
                     </div>
                 </div>
-                <div class="responses-container"  >
+                <div class="responses-container">
                     <button class="response">Atmospheric Composition Analysis</button>
                     <button class="response">Surface Temperature Mesurment</button>
                     <button class="response">Geological Survey</button>
