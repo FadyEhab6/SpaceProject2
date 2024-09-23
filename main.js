@@ -35,9 +35,13 @@ function calcScore(){
         document.getElementById('victory-state').innerHTML = 'DEFEAT';
     }
 }
-
+function ConfirmMenu(){
+    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('confirm').style.display = 'flex';
+}
 function VictoryMenu(){ 
     calcScore();
+    document.getElementById('confirm').style.display = 'none';
     document.getElementById('overlay').style.display = 'flex';
     document.getElementById('victory').classList.add('open');
     document.getElementById('score').innerHTML = score;
@@ -66,8 +70,6 @@ document.querySelectorAll('.Planet select').forEach(select => {
     });
 });
 
-
-
 function cluesGenerator(cluesCount) {
     const clues = currentPlanet.clues;
     const generatedClues = [];
@@ -80,28 +82,42 @@ function cluesGenerator(cluesCount) {
 }
 function test1(sliderInput){
     console.log(`test 1 triggered: ${sliderInput}`)
-    //main currentPlanet.maxWavelength - sliderInput 
-    //if:
-    // diff = 0 -> 3 clues
-    // diff = 5 -> 2 clues
-    // diff = 10 -> 1 clues
-    // diff = 15 -> 0 clues
-    //let cluesCount = planets.attributes.maxWavelength - sliderInput
-    // extract n clues from currentPlanet.clues
+    let diff = Math.abs(currentPlanet.attributes.Wavelength - sliderInput)
+    console.log(diff)
+    let cluesCount = 0;
+    
+    if (diff === 0){
+        console.log('Perfect wavelength')
+        cluesCount++;
+        console.log('cluesCount: ' + cluesCount)
+        return (RandomElement(gameData.tests['test1']["success"]) + "\nGases present: " + RandomElement(currentPlanet.attributes["Gases Present"]));
+    } else if (diff === 5){
+        console.log('Very close')
+        return (RandomElement(gameData.tests['test1']["failure"]));
+    } else if (diff > 5){
+        console.log('Way off')
+        return (RandomElement(gameData.tests['test1']["failure"]));
+    }
+    //const clues = cluesGenerator(cluesCount);
+    //console.log(clues);
+}
+function test2() {
+    console.log('test 2 triggered')
+    for (let i = 1; i <= 3; i++) {
+        let button = document.getElementById(`probe-button${i}`)
+        button.addEventListener('click', () => {
+            console.log(`Probe button ${i} clicked with slider input: ${sliderInput}`);
+        });
+    }
+    return("DUMY TEXT HAHA")
+}
 
+function test3(sliderInput) {
+    // Function body for test3
+}
 
-    // let diff = currentPlanet.maxWavelength - sliderInput
-    // let cluesCount = 0;
-
-    // if (diff === 0) {
-    //     cluesCount = 3;
-    // } else if (diff <= 5) {
-    //     cluesCount = 2;
-    // } else if (diff <= 10) {
-    //     cluesCount = 1;
-    // }
-    // const clues = cluesGenerator(cluesCount);
-    // console.log(clues);
+function test4(sliderInput) {
+    // Function body for test4
 }
 function Outcome(testType) {
     if(testType === 'test1'){
@@ -149,10 +165,12 @@ function ReadLog(){
 }
 function SubmitMenu(){
     if(isOpenRight){ //if menu is open close it
+        document.getElementById('inventory').style.display = 'flex';
         document.getElementById('planetSubmit').classList.remove('open');
         document.getElementById('submit-menu').classList.remove('clicked-submit-menu');
     }
     else if(!isOpenRight){ //if menu is closed open it
+        document.getElementById('inventory').style.display = 'none';
         document.getElementById('planetSubmit').classList.add('open');
         document.getElementById('submit-menu').classList.add('clicked-submit-menu');
         // document.getElementsByClassName('Logs')[0].innerHTML = "PLANET DISCOVERY LOGS:<br><br><br>" + logs.join('<br><hr>')
@@ -212,31 +230,40 @@ function activateTest(testType) {
     console.log("BUTTON CLICKED with test type: " + testType);
     hideResponses();
     showTest(testType);
-    if(!isTyping){
+    if (!isTyping) {
         const command = RandomElement(gameData.tests[testType].command); // gets a random command from the array of commands
         
-        const didSucceed = IsSuccessful(80) ? 'success' : 'failure'; // determines if test was successful
-        const result = RandomElement(gameData.tests[testType][didSucceed]); // gets a random response from the array of results
-
-        //generateText(testType);
         isTyping = true;
-
         // First type the OP text, then type the ASTRO text
         typeWriter(command, 'OPtext')
             .then(() => {
                 // Return a new Promise that resolves when the submit button is clicked
                 return new Promise(resolve => {
-                    const submitButton = document.getElementById('submit-button');
+                    const submitButton = document.getElementById('submit-button'); //TEST1 BUTTON
                     const handleClick = () => {
-                        submitButton.removeEventListener('click', handleClick);
-                        resolve();
+                        const sliderValue = document.getElementById('slider').value;
+                        let testResult;
+                        if(testType === 'test1'){
+                            testResult = test1(sliderValue);
+                        }
+                        if(testType === 'test2'){
+                            
+                            testResult = test2();
+                        }
+                        if(testType === 'test3'){
+                            testResult = test3();
+                        }
+                        if(testType === 'test4'){
+                            testResult = test4();
+                        }
+                        typeWriter(testResult, 'ASTROtext').then(() => {
+                            isTyping = false;
+                            resolve();
+                        });
                     };
                     submitButton.addEventListener('click', handleClick);
                 });
-            })
-            .then(() => delay(2000)) // adds delay
-            .then(() => typeWriter(result, 'ASTROtext')) // Wait for OPtext to finish
-            .then(() => isTyping = false); // Reset isTyping when both are done
+            });
     }
 }
 function SwitchPlanet(planet){ //called from html button
@@ -254,19 +281,25 @@ document.addEventListener('DOMContentLoaded', () => {
     slider.addEventListener('input', () => {
         sliderValue = slider.value;
     });
-    document.getElementById('back-button').addEventListener('click', function() { //BACK BUTTON
+    document.getElementById('back-button1').addEventListener('click', function() { //BACK BUTTON
         showResponses();
         hideTest('test1');
     });
-    //document.getElementById('submit-button').addEventListener('click',() => test1(sliderValue)); //SUBMIT BUTTON
+    document.getElementById('submit-button').addEventListener('click',() => test1(sliderValue)); //SUBMIT BUTTON
     // TEST 2 BUTTONS //
+    document.getElementById('back-button2').addEventListener('click', function(){
+        showResponses();
+        hideTest('test2');
+    }); //SUBMIT BUTTON
 
 
     // LOG AND VIEW LOGS BUTTON //
-    document.getElementById('return-button').addEventListener('click', VictoryMenu);
+    // document.getElementById('return-button').addEventListener('click', VictoryMenu);
+    document.getElementById('confirm-yes').addEventListener('click', VictoryMenu);
     document.getElementById('log').addEventListener('click', Log);
     document.getElementById('submit-menu').addEventListener('click', SubmitMenu);
     document.getElementById('log-button').addEventListener('click', ReadLog);
+    document.getElementById('return-button').addEventListener('click', ConfirmMenu);
     // RESPONSE BUTTONS //
     document.querySelectorAll('.response').forEach((button, index) => {
         button.addEventListener('click', () => activateTest(`test${index + 1}`));
@@ -287,8 +320,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let daysVisual = document.getElementById('days')
     const intervalId = setInterval(() => {
         if (days === 0) {
-            VictoryMenu();
+            VictoryMenu("Days ran out");
             clearInterval(intervalId);
+
+        } else if (days === 3) {
+            daysVisual.innerHTML = `Days left: ${--days}`;
+            daysVisual.style.color = 'red';
         } else {
             daysVisual.innerHTML = `Days left: ${--days}`;
         }
