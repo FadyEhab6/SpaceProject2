@@ -12,8 +12,15 @@ let isOpenLeft = false;
 let isOpenRight = false;
 let IsSuccessful = (successChance) => (Math.random() * 100 <= successChance); //returns bool if successfull
 let isTyping;
+let introDone = false;
+let cancelCurrentTest = false;
 let score = 0;
 let correctSubmission = []
+
+let test1Active = false;
+let test2Active = false;
+let test3Active = false;
+let test4Active = false;
 ////////inventory///////////
 let maxProbes = [3, 3, 1] //standard - high - deep
 let maxRadar = [5, 2] //lowF - highF
@@ -28,7 +35,7 @@ document.getElementById('next').addEventListener('click', async function() {
         .then(async () => {
             await delay(1000); // Add delay between typeWriter functions
             await typeWriter(ASTROstarting, 'ASTROtext');
-            await delay(1000);
+            introDone = true;
             resolve();
         });
     });
@@ -102,6 +109,7 @@ function cluesGenerator(cluesCount) {
     return generatedClues;
 }
 function test1(sliderInput){
+    test1Active = true;
     console.log(`test 1 triggered: ${sliderInput}`)
     let diff = Math.abs(currentPlanet.attributes.Wavelength - sliderInput)
     console.log(diff)
@@ -111,24 +119,31 @@ function test1(sliderInput){
         console.log('Perfect wavelength')
         cluesCount++;
         console.log('cluesCount: ' + cluesCount)
+        test1Active = false;
         return (RandomElement(gameData.tests['test1']["success"]) + "\nGases present: " + RandomElement(currentPlanet.attributes["Gases Present"]));
     } else if (diff === 5){
         console.log('Very close')
+        test1Active = false;
         return (RandomElement(gameData.tests['test1']["close"]));
     } else if (diff > 5){
         console.log('Way off')
+        test1Active = false;
         return (RandomElement(gameData.tests['test1']["failure"]));
     }
 }
 function test2(chosenProbe) {
+    test2Active = true;
     let bestProbe = currentPlanet.attributes.Probe;
     if (maxProbes[0] === 0 && chosenProbe === "Standard"){
+        test2Active = false;
         return RandomElement(gameData.tests.test2["out-standard"])
     }
     else if (maxProbes[1] === 0 && chosenProbe === "High"){
+        test2Active = false;
         return RandomElement(gameData.tests.test2["out-high"])
     }
     else if (maxProbes[2] === 0 && chosenProbe === "Deep"){
+        test2Active = false;
         return RandomElement(gameData.tests.test2["out-deep"])
     }
     else {
@@ -136,29 +151,38 @@ function test2(chosenProbe) {
             if (currentPlanet.attributes.Surface){
                 maxProbes[2]--;
                 UpdateInventory();
+                test2Active = false;
                 return RandomElement(gameData.tests.test2["success-deep"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
             }
-            else return RandomElement(gameData.tests.test2["failure-deep"])
+            
+            else{
+                test1Active = false;
+                return RandomElement(gameData.tests.test2["failure-deep"])
+            } 
         }
         else if (bestProbe === chosenProbe){
             if (chosenProbe === "Standard"){
                 maxProbes[0]--;
                 UpdateInventory();
+                test2Active = false;
                 return RandomElement(gameData.tests.test2["success-standard"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
                 //display temp
             }
             else if (chosenProbe === "High"){
                 maxProbes[1]--;
                 UpdateInventory();
+                test2Active = false;
                 return RandomElement(gameData.tests.test2["success-high"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
                 //display temp
             }
         }
         else {
             if (chosenProbe === "Standard"){
+                test2Active = false;
                 return RandomElement(gameData.tests.test2["failure-standard"])
             }
             else if (chosenProbe === "High"){
+                test2Active = false;
                 return RandomElement(gameData.tests.test2["failure-high"])
             }
         }
@@ -166,17 +190,21 @@ function test2(chosenProbe) {
 }
 
 function test3(freq) {
+    test3Active = true;
     console.log(freq + "TEST 3")
     if (maxRadar[0] === 0 && freq === "low"){ //if ran out
+        test3Active = false;
         return RandomElement(gameData.tests.test3["failure-LowOut"])
     }
     else if (maxRadar[1] === 0 && freq === "high"){
+        test3Active = false;
         return RandomElement(gameData.tests.test3["failure-HighOut"])
     }
     else {
         if (freq === "low"){
             maxRadar[0]--;
             UpdateInventory();
+            test3Active = false;
             return (RandomElement(gameData.tests.test3["success-LowF"]), RandomElement(currentPlanet.attributes.Dialogue3))
         }
         else if (freq === "high"){
@@ -186,20 +214,25 @@ function test3(freq) {
             });
             maxRadar[1]--;
             UpdateInventory();
+            test3Active = false;
             return result
         }
     }
 }
 
 function test4(time) {
+    test4Active = true;
     if (maxScan[time] == 0){
         if (time == 0){
+            test4Active = false;
             return RandomElement(gameData.tests.test4["out-1hr"])
         }
         else if (time == 1){
+            test4Active = false;
             return RandomElement(gameData.tests.test4["out-3hr"])
         }
         else if (time == 2){
+            test4Active = false;
             return RandomElement(gameData.tests.test4["out-6hr"])
         }
     }
@@ -210,6 +243,7 @@ function test4(time) {
                 let r = Math.floor(Math.random() * arr.length)
                 maxScan[0]--;
                 UpdateInventory();
+                test4Active = false;
                 return (RandomElement(gameData.tests.test4["success-1hr"]) + "\n" + currentPlanet.attributes.Dialogue4[r])
                 //choose 1 random
             }
@@ -222,17 +256,20 @@ function test4(time) {
                 r = Math.floor(Math.random() * arr.length)
                 result += currentPlanet.attributes.Dialogue4[r]
                 currentPlanet.attributes.Dialogue4.push(deleted)
+                test4Active = false;
                 return result
                 //choose 2 random
             }
             else if (time == 2){
                 maxScan[2]--;
                 UpdateInventory();
+                test4Active = false;
                 return (RandomElement(gameData.tests.test4["success-6hr"]) + "\n" + currentPlanet.attributes.Dialogue4[0] + currentPlanet.attributes.Dialogue4[1] + currentPlanet.attributes.Dialogue4[2])
                 //display all
             }
         }
         else {
+            test4Active = false;
             return RandomElement(gameData.tests.test4["failure"])
             //display none
         }
@@ -255,7 +292,7 @@ function UpdateInventory(){
 // } //generates a random element (index) from an array
 
 function Log(){     
-    if (!isTyping) { //if not typing, log the planet
+    if (!isTyping && introDone) { //if not typing, log the planet
         logs.push(`- [${currentPlanet.id}] ` + document.getElementById('ASTROtext').innerHTML)
         console.log(currentPlanet)
     }
@@ -340,60 +377,67 @@ function generateText(testType){
     }
 }
 function activateTest(testType) {
-    console.log("BUTTON CLICKED with test type: " + testType);
-    hideResponses();
-    showTest(testType);
-    if (!isTyping) {
-        const command = RandomElement(gameData.tests[testType].command); // gets a random command from the array of commands
-        
-        // First type the OP text, then type the ASTRO text
-        typeWriter(command, 'OPtext')
-            .then(() => {
-                // Return a new Promise that resolves when the submit button is clicked
-                return new Promise(resolve => {
-                    
-                    // document.getElementById('back-button1').addEventListener('click',  resolve());}
-                    // document.getElementById('back-button2').addEventListener('click',  resolve());}
-                    // document.getElementById('back-button3').addEventListener('click',  resolve());}
-                    // document.getElementById('back-button4').addEventListener('click',  resolve());}
-                    
-                    
-                    const submitButton = document.getElementById('submit-button'); //TEST1 BUTTON
-                    const handleClick = (event) => {
-                        if(!isTyping){console.log(event.target.name)
-                        const sliderValue = document.getElementById('slider').value;
-                        let testResult;
-                        if(testType === 'test1'){
-                            testResult = test1(sliderValue);
-                        }
-                        if(testType === 'test2'){
-                            testResult = test2(event.target.name);
-                        }
-                        if(testType === 'test3'){
-                            testResult = test3(event.target.name);
-                        }
-                        if(testType === 'test4'){
-                            testResult = test4(event.target.value);
-                        }
-                        typeWriter(testResult, 'ASTROtext').then(() => {
-                            resolve();
-                        });}
-                    };
-                    ///TEST 1 BUTTONS///
-                    submitButton.addEventListener('click', handleClick);
-                    ///TEST 2 BUTTONS///
-                    document.getElementById('probe-button1').addEventListener('click', handleClick);
-                    document.getElementById('probe-button2').addEventListener('click', handleClick);
-                    document.getElementById('probe-button3').addEventListener('click', handleClick);
-                    ///TEST 3 BUTTONS///
-                    document.getElementById('radar-button1').addEventListener('click', handleClick);
-                    document.getElementById('radar-button2').addEventListener('click', handleClick);
-                    ///TEST 4 BUTTONS///
-                    document.getElementById('scan-button1').addEventListener('click', handleClick);
-                    document.getElementById('scan-button2').addEventListener('click', handleClick);
-                    document.getElementById('scan-button3').addEventListener('click', handleClick);
+    if(introDone){
+        console.log("BUTTON CLICKED with test type: " + testType);
+        hideResponses();
+        showTest(testType);
+        if (!isTyping) {
+            const command = RandomElement(gameData.tests[testType].command); // gets a random command from the array of commands
+            
+            // First type the OP text, then type the ASTRO text
+            typeWriter(command, 'OPtext')
+                .then(() => {
+                    // Return a new Promise that resolves when the submit button is clicked
+                    return new Promise(resolve => {
+                        const submitButton = document.getElementById('submit-button'); //TEST1 BUTTON
+
+                        document.getElementById('back-button1').addEventListener('click', () => {cancelCurrentTest = true})
+                        document.getElementById('back-button2').addEventListener('click', () => {cancelCurrentTest = true})
+                        document.getElementById('back-button3').addEventListener('click', () => {cancelCurrentTest = true})
+                        document.getElementById('back-button4').addEventListener('click', () => {cancelCurrentTest = true})
+                        console.log(cancelCurrentTest + "cancel current")
+                        const handleClick = (event) => {
+                            if (cancelCurrentTest) {
+                                cancelCurrentTest = false;
+                                resolve();
+                                return;
+                            }
+                            if(!isTyping){
+                                console.log(event.target.name)
+                                const sliderValue = document.getElementById('slider').value;
+                                let testResult;
+                                if(testType === 'test1'){
+                                    testResult = test1(sliderValue);
+                                }
+                                if(testType === 'test2'){
+                                    testResult = test2(event.target.name);
+                                }
+                                if(testType === 'test3'){
+                                    testResult = test3(event.target.name);
+                                }
+                                if(testType === 'test4'){
+                                    testResult = test4(event.target.value);
+                                }
+                                typeWriter(testResult, 'ASTROtext').then(() => {
+                                    resolve();
+                            });}
+                        };
+                        ///TEST 1 BUTTONS///
+                        submitButton.addEventListener('click', handleClick);
+                        ///TEST 2 BUTTONS///
+                        document.getElementById('probe-button1').addEventListener('click', handleClick);
+                        document.getElementById('probe-button2').addEventListener('click', handleClick);
+                        document.getElementById('probe-button3').addEventListener('click', handleClick);
+                        ///TEST 3 BUTTONS///
+                        document.getElementById('radar-button1').addEventListener('click', handleClick);
+                        document.getElementById('radar-button2').addEventListener('click', handleClick);
+                        ///TEST 4 BUTTONS///
+                        document.getElementById('scan-button1').addEventListener('click', handleClick);
+                        document.getElementById('scan-button2').addEventListener('click', handleClick);
+                        document.getElementById('scan-button3').addEventListener('click', handleClick);
+                    });
                 });
-            });
+        }
     }
 }
 function SwitchPlanet(planet){ //called from html button
