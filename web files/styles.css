@@ -296,11 +296,13 @@ input[type="radio"]:checked::before {
     padding: 20px 20px;
 }
 .modal-title{
-    font-size: 30px;
+    font-size: 45px;
 }
 .modal-text{
     text-align: center;
-    color: var(--main-color-dim)
+    color: var(--main-color-dim);
+    font-size: 30px;
+    text-align: center;    
 }
 .modal-button{
     font-size: 30px;
@@ -388,7 +390,7 @@ input[type="range"]::-ms-thumb {
     width: 20%;
 
 }
-.test1-button{
+.test-button{
     font-size: 30px;
     width: 80%;
 }
@@ -555,4 +557,42 @@ select option:checked {
 /* *************************************************************** */
 .open.grid-item{
     color: red;
+}
+/* *************************************************************** */
+.radar-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 10px;
+}
+.radar-buttons button{
+    padding: 30px 30px;
+    font-size: 30px;
+    width: 300px;
+}
+#test3{
+    display: none;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/* *************************************************************** */
+#test4{
+    display: none;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.scan-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 10px;
+}
+.scan-buttons button{
+    padding: 30px 30px;
+    font-size: 30px;
+    width: 300px;
 }

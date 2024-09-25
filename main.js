@@ -1,20 +1,39 @@
 import gameData from './jsons/gameData.json' with{type: 'json'}
-import planets from './jsons/planets.json' with{type: 'json'}
 
-import {chosenPlanets, logs, allPlanets } from './globals.js';
-
-let currentPlanet;
+import { chosenPlanets, logs, allPlanets, RandomElement } from './globals.js';
+let oneDayInMS = 120000; //2 minutes
 let o2 = 100
 let days = 10
 let i = 0;
-let speed = 30;
+let speed = 15;
+let start = false;
+let currentPlanet;
 let isOpenLeft = false;
 let isOpenRight = false;
 let IsSuccessful = (successChance) => (Math.random() * 100 <= successChance); //returns bool if successfull
 let isTyping;
 let score = 0;
 let correctSubmission = []
-
+////////inventory///////////
+let maxProbes = [3, 3, 1] //standard - high - deep
+let maxRadar = [5, 2] //lowF - highF
+let maxScan = [5, 3, 1] //1hr - 3hr - 6hr
+let luckChance = 60
+document.getElementById('next').addEventListener('click', async function() {
+    let OPstarting = "Let's start with the tests below and see what we have."
+    let ASTROstarting = "Awaiting the commands..."
+    await delay(1000);
+    return new Promise((resolve) => { // Return a promise
+        typeWriter(OPstarting, 'OPtext')
+        .then(async () => {
+            await delay(1000); // Add delay between typeWriter functions
+            await typeWriter(ASTROstarting, 'ASTROtext');
+            await delay(1000);
+            resolve();
+        });
+    });
+});
+UpdateInventory();
 const typingSound = document.getElementById('typingSound');
 console.log(chosenPlanets)
 function calcScore(){
@@ -27,6 +46,7 @@ function calcScore(){
         console.log(document.getElementById(`planets${i+1}`))
     }
     console.log(score)
+    
     if(score > 3){
         document.getElementById('victory-state').innerHTML = 'VICTORY';
     }else if(score === 2){ 
@@ -35,6 +55,7 @@ function calcScore(){
         document.getElementById('victory-state').innerHTML = 'DEFEAT';
     }
 }
+
 function ConfirmMenu(){
     document.getElementById('overlay').style.display = 'flex';
     document.getElementById('confirm').style.display = 'flex';
@@ -93,55 +114,145 @@ function test1(sliderInput){
         return (RandomElement(gameData.tests['test1']["success"]) + "\nGases present: " + RandomElement(currentPlanet.attributes["Gases Present"]));
     } else if (diff === 5){
         console.log('Very close')
-        return (RandomElement(gameData.tests['test1']["failure"]));
+        return (RandomElement(gameData.tests['test1']["close"]));
     } else if (diff > 5){
         console.log('Way off')
         return (RandomElement(gameData.tests['test1']["failure"]));
     }
-    //const clues = cluesGenerator(cluesCount);
-    //console.log(clues);
 }
-function test2() {
-    console.log('test 2 triggered')
-    for (let i = 1; i <= 3; i++) {
-        let button = document.getElementById(`probe-button${i}`)
-        button.addEventListener('click', () => {
-            console.log(`Probe button ${i} clicked with slider input: ${sliderInput}`);
-        });
+function test2(chosenProbe) {
+    let bestProbe = currentPlanet.attributes.Probe;
+    if (maxProbes[0] === 0 && chosenProbe === "Standard"){
+        return RandomElement(gameData.tests.test2["out-standard"])
     }
-    return("DUMY TEXT HAHA")
+    else if (maxProbes[1] === 0 && chosenProbe === "High"){
+        return RandomElement(gameData.tests.test2["out-high"])
+    }
+    else if (maxProbes[2] === 0 && chosenProbe === "Deep"){
+        return RandomElement(gameData.tests.test2["out-deep"])
+    }
+    else {
+        if (chosenProbe === "Deep"){
+            if (currentPlanet.attributes.Surface){
+                maxProbes[2]--;
+                UpdateInventory();
+                return RandomElement(gameData.tests.test2["success-deep"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
+            }
+            else return RandomElement(gameData.tests.test2["failure-deep"])
+        }
+        else if (bestProbe === chosenProbe){
+            if (chosenProbe === "Standard"){
+                maxProbes[0]--;
+                UpdateInventory();
+                return RandomElement(gameData.tests.test2["success-standard"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
+                //display temp
+            }
+            else if (chosenProbe === "High"){
+                maxProbes[1]--;
+                UpdateInventory();
+                return RandomElement(gameData.tests.test2["success-high"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
+                //display temp
+            }
+        }
+        else {
+            if (chosenProbe === "Standard"){
+                return RandomElement(gameData.tests.test2["failure-standard"])
+            }
+            else if (chosenProbe === "High"){
+                return RandomElement(gameData.tests.test2["failure-high"])
+            }
+        }
+    }
 }
 
-function test3(sliderInput) {
-    // Function body for test3
+function test3(freq) {
+    console.log(freq + "TEST 3")
+    if (maxRadar[0] === 0 && freq === "low"){ //if ran out
+        return RandomElement(gameData.tests.test3["failure-LowOut"])
+    }
+    else if (maxRadar[1] === 0 && freq === "high"){
+        return RandomElement(gameData.tests.test3["failure-HighOut"])
+    }
+    else {
+        if (freq === "low"){
+            maxRadar[0]--;
+            UpdateInventory();
+            return (RandomElement(gameData.tests.test3["success-LowF"]), RandomElement(currentPlanet.attributes.Dialogue3))
+        }
+        else if (freq === "high"){
+            let result = RandomElement(gameData.tests.test3["success-HighF"])
+            currentPlanet.attributes.Dialogue3.forEach(element => {
+                result += element
+            });
+            maxRadar[1]--;
+            UpdateInventory();
+            return result
+        }
+    }
 }
 
-function test4(sliderInput) {
-    // Function body for test4
+function test4(time) {
+    if (maxScan[time] == 0){
+        if (time == 0){
+            return RandomElement(gameData.tests.test4["out-1hr"])
+        }
+        else if (time == 1){
+            return RandomElement(gameData.tests.test4["out-3hr"])
+        }
+        else if (time == 2){
+            return RandomElement(gameData.tests.test4["out-6hr"])
+        }
+    }
+    else{
+        luckChance = 90
+        if (Math.random() * 100 <= luckChance){
+            if (time == 0){
+                let r = Math.floor(Math.random() * arr.length)
+                maxScan[0]--;
+                UpdateInventory();
+                return (RandomElement(gameData.tests.test4["success-1hr"]) + "\n" + currentPlanet.attributes.Dialogue4[r])
+                //choose 1 random
+            }
+            else if (time == 1){
+                let r = Math.floor(Math.random() * arr.length)
+                maxScan[1]--;
+                UpdateInventory();
+                let result = RandomElement(gameData.tests.test4["success-3hr"]) + "\n" + currentPlanet.attributes.Dialogue4[r]
+                let deleted = currentPlanet.attributes.Dialogue4.splice(r,1)
+                r = Math.floor(Math.random() * arr.length)
+                result += currentPlanet.attributes.Dialogue4[r]
+                currentPlanet.attributes.Dialogue4.push(deleted)
+                return result
+                //choose 2 random
+            }
+            else if (time == 2){
+                maxScan[2]--;
+                UpdateInventory();
+                return (RandomElement(gameData.tests.test4["success-6hr"]) + "\n" + currentPlanet.attributes.Dialogue4[0] + currentPlanet.attributes.Dialogue4[1] + currentPlanet.attributes.Dialogue4[2])
+                //display all
+            }
+        }
+        else {
+            return RandomElement(gameData.tests.test4["failure"])
+            //display none
+        }
+    }
 }
-function Outcome(testType) {
-    if(testType === 'test1'){
-    ///////////////////// 1 ////////////////////////
-        
-        return IsSuccessful(80) ? 'success' : 'failure';
-    }
-    ///////////////////// 2 ////////////////////////
-    if(testType === 'test2'){
-        return IsSuccessful(80) ? 'success' : 'failure';
-    }
-    ////////////////////// 3 ///////////////////////
-    if(testType === 'test3'){
-        return IsSuccessful(80) ? 'success' : 'failure';
-    }
-    /////////////////////// 4 //////////////////////
-    if(testType === 'test4'){
-        return IsSuccessful(80) ? 'success' : 'failure';
-    }
+function UpdateInventory(){
+    document.getElementById('sProbeCount').innerHTML = maxProbes[0];
+    document.getElementById('hProbeCount').innerHTML = maxProbes[1];
+    document.getElementById('dProbeCount').innerHTML = maxProbes[2];
+    ///////////////////////////////////////
+    document.getElementById('lowRadar').innerHTML = maxRadar[0];
+    document.getElementById('highRadar').innerHTML = maxRadar[1];
+    ///////////////////////////////////////
+    document.getElementById('1hr').innerHTML = maxScan[0];
+    document.getElementById('3hr').innerHTML = maxScan[1];
+    document.getElementById('6hr').innerHTML = maxScan[2];
 }
-
-export function RandomElement(arr) {
-    return arr[Math.floor(Math.random() * arr.length)]
-} //generates a random element (index) from an array
+// export function RandomElement(arr) {
+//     return arr[Math.floor(Math.random() * arr.length)]
+// } //generates a random element (index) from an array
 
 function Log(){     
     if (!isTyping) { //if not typing, log the planet
@@ -190,7 +301,8 @@ function hideTest(testType){
     document.getElementById(testType).style.display = 'none';
 }
 
-function typeWriter(text, divId) {
+export function typeWriter(text, divId) {
+    isTyping = true;
     return new Promise((resolve) => { // Return a promise
         let i = 0;
         document.getElementById(divId).innerHTML = ' ';
@@ -204,6 +316,7 @@ function typeWriter(text, divId) {
             } else {
                 typingSound.pause();
                 typingSound.currentTime = 0; // Reset audio to the start
+                isTyping = false
                 resolve(); // Resolve the promise when done typing
             }
         }
@@ -233,35 +346,52 @@ function activateTest(testType) {
     if (!isTyping) {
         const command = RandomElement(gameData.tests[testType].command); // gets a random command from the array of commands
         
-        isTyping = true;
         // First type the OP text, then type the ASTRO text
         typeWriter(command, 'OPtext')
             .then(() => {
                 // Return a new Promise that resolves when the submit button is clicked
                 return new Promise(resolve => {
+                    
+                    // document.getElementById('back-button1').addEventListener('click',  resolve());}
+                    // document.getElementById('back-button2').addEventListener('click',  resolve());}
+                    // document.getElementById('back-button3').addEventListener('click',  resolve());}
+                    // document.getElementById('back-button4').addEventListener('click',  resolve());}
+                    
+                    
                     const submitButton = document.getElementById('submit-button'); //TEST1 BUTTON
-                    const handleClick = () => {
+                    const handleClick = (event) => {
+                        if(!isTyping){console.log(event.target.name)
                         const sliderValue = document.getElementById('slider').value;
                         let testResult;
                         if(testType === 'test1'){
                             testResult = test1(sliderValue);
                         }
                         if(testType === 'test2'){
-                            
-                            testResult = test2();
+                            testResult = test2(event.target.name);
                         }
                         if(testType === 'test3'){
-                            testResult = test3();
+                            testResult = test3(event.target.name);
                         }
                         if(testType === 'test4'){
-                            testResult = test4();
+                            testResult = test4(event.target.value);
                         }
                         typeWriter(testResult, 'ASTROtext').then(() => {
-                            isTyping = false;
                             resolve();
-                        });
+                        });}
                     };
+                    ///TEST 1 BUTTONS///
                     submitButton.addEventListener('click', handleClick);
+                    ///TEST 2 BUTTONS///
+                    document.getElementById('probe-button1').addEventListener('click', handleClick);
+                    document.getElementById('probe-button2').addEventListener('click', handleClick);
+                    document.getElementById('probe-button3').addEventListener('click', handleClick);
+                    ///TEST 3 BUTTONS///
+                    document.getElementById('radar-button1').addEventListener('click', handleClick);
+                    document.getElementById('radar-button2').addEventListener('click', handleClick);
+                    ///TEST 4 BUTTONS///
+                    document.getElementById('scan-button1').addEventListener('click', handleClick);
+                    document.getElementById('scan-button2').addEventListener('click', handleClick);
+                    document.getElementById('scan-button3').addEventListener('click', handleClick);
                 });
             });
     }
@@ -291,7 +421,18 @@ document.addEventListener('DOMContentLoaded', () => {
         showResponses();
         hideTest('test2');
     }); //SUBMIT BUTTON
-
+    
+    // TEST 3 BUTTONS //
+    document.getElementById('back-button3').addEventListener('click', function(){
+        showResponses();
+        hideTest('test3');
+    });
+    // TEST 3 BUTTONS //
+    document.getElementById('back-button4').addEventListener('click', function(){
+        showResponses();
+        hideTest('test4');
+    });
+    
 
     // LOG AND VIEW LOGS BUTTON //
     // document.getElementById('return-button').addEventListener('click', VictoryMenu);
@@ -329,9 +470,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             daysVisual.innerHTML = `Days left: ${--days}`;
         }
-    }, 60000); //countdown oxygen
+    }, oneDayInMS); 
 
-// setInterval(() => {
-//     console.log(`Days left: ${--days}`)
-// },(3000)); //countdown days left
 

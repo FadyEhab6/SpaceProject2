@@ -1,5 +1,8 @@
-import planets from './jsons/planets.json' with{type: 'json'}
-import { RandomElement } from './main.js';
+import planets from './jsons/planets.json' with{type: 'json'};
+export function RandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
+} //generates a random element (index) from an array
+
 
 //generates 5 random planets and adds them to chosenPlanets (AS OBJECTS) unique
 let chosenPlanets = [];
