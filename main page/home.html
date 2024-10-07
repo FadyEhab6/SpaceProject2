@@ -1,0 +1,191 @@
+<head>
+    <title>Project: Space</title>
+    <link rel="icon" href="./images/icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="homestyles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <div class="headerInfo">
+            <a href="#section1" class="headerText">Welcome</a>
+            <a href="#section2" class="headerText">Introduction</a>
+            <a href="#section3" class="headerText">Tutorial</a>
+            <a href="#section4" class="headerText">Credits</a>
+        </div>
+    </header>
+    <section class="welcomeSection" id="section1">
+        <div class="welcomeContainer">
+            <h1 id ="welcomeText"></h1>
+            <!-- <a href="./index.html" id="playGame">Play Game</a> -->
+            <a id="playGameBorder" onclick="window.location.href='./index.html'" target="_blank"><span id="playGameText">Play Game</span></a>
+        </div>
+    </section>
+    <section class="intro" id="section2">
+        <div class="sectionContainer">
+            <h1 class="title">Introduction</h1>
+            <p class="paragraph">Space Project is a thrilling text-based adventure where you step into the role of a space station operator.<br><br> Your mission? Uncover the identities of five mysterious planets by guiding an astronaut through uncharted territory. Equipped with only fragmented data and your astronaut's reports from the surface, you must analyze clues, make critical decisions, and piece together the truth.
+                Every journey offers unique challenges, with multiple paths and outcomes to explore. Will you successfully identify the planets and unlock their secrets, or will the unknown leave you lost in the void? The fate of the mission is in your hands.
+                <br><br>
+                Prepare to dive into the cosmos.
+        </div>
+    </section>
+    <section class="tutorial" id="section3">
+        <div class="sectionContainer">
+            <h1 class="title">Tutorial</h1>
+            <!-- <p class="paragraph">Welcome to Space Project! As an operator, you will guide an astronaut through five mysterious planets. Your goal is to identify each planet by analyzing clues and making decisions based on the information you receive. Each planet has unique characteristics and challenges, so be prepared for anything. Good luck!</p> -->
+            <div class="slides">
+                <div id="slide1">
+                    <img src="./images/chat.png" alt="chat" class="slideImage" style="max-width: 90%; max-height: 90%;">
+                    <div class="paragraph">
+                        <h2 style="font-size: 70px;">Chat screen:</h2>
+                        <br> This is where you will receive messages and test results from the astronaut on the planet's surface.
+                        Pay close attention to the information provided, and [LOG] it when needed, 
+                        as it will help you identify the planet.
+                    </div>
+                </div>
+                <div id="slide2">
+                    <img src="./images/tests.png" alt="tests" class="slideImage" style="max-width: 50%; max-height: 90%;">
+                    <div class="paragraph">
+                        <h2 style="font-size: 70px;">Test buttons:</h2>
+                        <br> Use these buttons to run tests on the current planet selected.
+                        Each test will provide you with valuable information that will help you identify the planet (some test may consume resources).
+                    </div>
+                </div>
+                <div id="slide3">
+                    <img src="./images/switch.png" alt="planets" class="slideImage" style="max-width: 50%; max-height: 90%;">
+                    <div class="paragraph">
+                        <h2 style="font-size: 70px;">Planet switching:</h2>
+                        <br> Planet switching buttons will allow you to switch between the five planets. 
+                        The active planet is where your tests will be run.
+                    </div>
+                </div>
+                <div id="slide4">
+                    <img src="./images/inventory.png" alt="inventory" class="slideImage" style="max-width: 100%; max-height: 100%; border: 3px solid var(--main-color); margin: 50px;">
+                    <div class="paragraph">
+                        <h2 style="font-size: 70px;">Resources:</h2>
+                        <br> Some tests consume different resources. 
+                        Keep an eye on your inventory to ensure you have enough resources to run the tests you need.
+                    </div>
+                </div>
+                <div id="slide5">
+                    <img src="./images/side.png" alt="side-buttons" class="slideImage" style="max-width: 100%; max-height: 100%; border: 3px solid var(--main-color); margin: 50px;">
+                    <div class="paragraph">
+                        <h2 style="font-size: 70px;">Side buttons:</h2>
+                        <br> These buttons provide useful functionalitites:<br><br> 
+                        <ol style="text-align: left;">
+                            <li> [View Logs]: Displays logs logged previously using [LOG].</li>
+                            <li> [Submit Menu]: Displays the submit menu.</li>
+                            <li> [Return Early]: Ends the mission early and submits the chosen planets.</li>
+                            <li> [Space FM]: Try it and see what is does :).</li>
+                        </ol>
+                    </div>    
+                </div>
+                <div id="slide6">
+                    <img src="./images/submit.png" alt="submit" class="slideImage" style="max-width: 100%; max-height: 100%; border: 3px solid var(--main-color); margin: 50px;">
+                    <div class="paragraph">
+                        <h2 style="font-size: 70px;">Submitting:</h2>
+                        <br> This is the main menu where you can submit your chosen planets after gathering clues.
+                        If days run out, the planets you have chosen will be submitted automatically. You get 1 score for each planet you guess correctly.
+                    </div>    
+                </div>
+                <div id="slide7">
+                    <div class="paragraph">
+                        <h2 style="font-size: 70px;">Resources PDF:</h2>
+                        <br> Finally, here is a PDF that contains all the planets info you will need during the gameplay.
+                        <br><br> <a href="./Guide.pdf" target="_blank" style="text-decoration-line: underline; font-size: larger;">Open PDF</a>
+                    </div>    
+                </div>
+            </div>
+
+            <div class="slideButtons">
+                <button onclick="previousSlide()"> < </button>
+                <input type="radio" name="slide-button" class="slideButton" onclick="showSlide(1)" id="slide-button1">
+                <input type="radio" name="slide-button" class="slideButton" onclick="showSlide(2)" id="slide-button2">
+                <input type="radio" name="slide-button" class="slideButton" onclick="showSlide(3)" id="slide-button3">
+                <input type="radio" name="slide-button" class="slideButton" onclick="showSlide(4)" id="slide-button4">
+                <input type="radio" name="slide-button" class="slideButton" onclick="showSlide(5)" id="slide-button5">
+                <input type="radio" name="slide-button" class="slideButton" onclick="showSlide(6)" id="slide-button6">
+                <input type="radio" name="slide-button" class="slideButton" onclick="showSlide(7)" id="slide-button7">
+                <button onclick="nextSlide()"> > </button>
+            </div>
+        </div>
+    </section>
+    <section class="credits" id="section4">
+        <div class="sectionContainer">
+            <h1 class="title">Credits</h1>
+            <p class="paragraph">This project was made originally for Local NASA Hackthon space apps 2024' Obour by: <br><br>
+                - Fady Ehab (Game and Interface) <br>
+                - Abdelrahman ElKhayat (Game Concept)<br>
+                - Mostafa Raed (Team Management)<br>
+                - Ali Abdelfattah (Resources)<br>
+                - Nadine Mahmoud (Main Project Web Page)<br>
+                - Marc Halim (PDF designs)<br>
+                <br>
+                <a href="https://moustafaread.github.io/BeyondtheCosmos.github.io/" style="text-decoration-line: underline;" target="_blank">Original project here</a>
+                <br><br>
+                <span style="color: var(--main-color-dim); font-size: .8em;">Original game (and game page) was made and will be updated by Fady Ehab <br> Thank you for playing :)</span>
+            </p>
+        </div>
+    </section>
+
+    <script>
+        let currentSlide = 1;
+        showSlide(currentSlide);
+        function displayPlayGame() {
+            setTimeout(function() {
+                const playGameBorder = document.getElementById("playGameBorder");
+                playGameBorder.style.display = "block"; 
+                playGameBorder.classList.add('fadein'); 
+                setTimeout(function() {
+                    const playGameText = document.getElementById("playGameText");
+                    playGameText.style.display = "block"; 
+                    playGameText.classList.add('fadein');
+                    setTimeout(function() {
+                        playGameText.classList.remove('fadein');
+                        playGameText.classList.add('flicker');
+                    }, 1000);
+                }, 1000);
+            }, 500); 
+        }
+
+        function showSlide(slideIndex) {
+            const slides = document.querySelectorAll('.slides > div');
+            document.getElementById(`slide-button${currentSlide}`).checked = false;
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            const selectedSlide = document.getElementById(`slide${slideIndex}`);
+            currentSlide = slideIndex;
+            selectedSlide.classList.add('active');
+            document.getElementById(`slide-button${slideIndex}`).checked = true;
+        }
+        function nextSlide() {
+            console.log(currentSlide % 7 + 1)
+            showSlide(currentSlide % 7 + 1);
+        }
+        function previousSlide() {
+            console.log((currentSlide + 5) % 7 + 1)
+            showSlide((currentSlide + 5) % 7 + 1);
+        }
+
+        let index = 0;
+        function typeWriter(text, divID) {
+            function type() {
+                if (index < text.length) {
+                    let speed = Math.floor(Math.random() * 100) + 90;
+                    document.getElementById(divID).innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(type, speed);
+                    if (index == (text.length - 1)) setTimeout(displayPlayGame, 0);
+                }
+            }
+            type();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            typeWriter("Welcome, operator!", "welcomeText");
+        });
+    </script>
+</body>
